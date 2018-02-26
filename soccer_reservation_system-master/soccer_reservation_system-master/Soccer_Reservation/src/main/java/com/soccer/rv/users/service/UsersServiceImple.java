@@ -34,16 +34,10 @@ public class UsersServiceImple implements UsersService{
 	@Autowired
 	private FieldDao fieldDao;
 	
-	@Autowired
-	private PasswordEncoder encoder;
-	
 	
 	//회원가입
 	@Override
 	public ModelAndView signup(UsersDto dto) {
-		
-		 String hash=encoder.encode(dto.getPwd());
-		 dto.setPwd(hash);
 		 
 		 dao.insert(dto);
 		 ModelAndView mView = new ModelAndView();
@@ -63,15 +57,7 @@ public class UsersServiceImple implements UsersService{
 		
 		UsersDto resultDto=dao.getData(dto.getId());
 		
-		boolean isValid = dao.isValid(dto);
-		
-		if(resultDto != null){
-			boolean isMatch=encoder.matches(dto.getPwd(), resultDto.getPwd());
-			if(isMatch){
-				isValid=true;
-			}
-		}
-		
+		boolean isValid = dao.isValid(dto);	
 		
 		String url = request.getParameter("url");
 		ModelAndView mView = new ModelAndView();
