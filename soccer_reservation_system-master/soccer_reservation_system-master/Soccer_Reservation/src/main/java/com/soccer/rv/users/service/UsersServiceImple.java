@@ -38,9 +38,34 @@ public class UsersServiceImple implements UsersService{
 	//회원가입
 	@Override
 	public ModelAndView signup(UsersDto dto) {
+		//회원이 등록 주소를 불러와 location에 담는다. 
+		 String location = dto.getAddr();
+		 ModelAndView mView = new ModelAndView();
+		 
+		 Geocoder geocoder = new Geocoder(); //Geocoder 구글 API 객체 생
+			
+			GeocoderRequest geocoderRequest = new GeocoderRequestBuilder() 
+					.setAddress(location).setLanguage("ko").getGeocoderRequest(); //주소를 좌표로 변경해주는 구글 url 명령어 주소를 java api명령어로 표현.
+			try {
+				GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+				GeocoderResult geocoderResult=geocoderResponse.getResults().iterator().next();
+				LatLng latitudeLongitude = geocoderResult.getGeometry().getLocation(); //json형식으로 출력된 정보 중 좌표만 얻어온다.
+				Float[] coords = new Float[2]; //Float 타입의 배열에 담는다.
+				coords[0] = latitudeLongitude.getLat().floatValue(); //json형식의 좌표값을 불러온다.
+				coords[1] = latitudeLongitude.getLng().floatValue();
+				
+				float lat = coords[0];
+				float lng = coords[1];
+				//회원의 주소를 좌표로 변경한 정보를 dto 담는다.
+				dto.setLat(lat);
+				dto.setLng(lng);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		 
 		 dao.insert(dto);
-		 ModelAndView mView = new ModelAndView();
+		 
 		 mView.addObject("id", dto.getId());
 		
 		return mView;
@@ -108,72 +133,72 @@ public class UsersServiceImple implements UsersService{
 		return mView;
 	}
 	
-	//user 정보에 저장되어 있는 주소를 좌표로 변환하는 메소
-	@Override
-	public ModelAndView map(HttpServletRequest request) {
-		String id = (String)request.getSession().getAttribute("id"); 
-		UsersDto dto = dao.getMap(id);
-		String location = dto.getAddr(); // DB에서 받은 주소를 location에 담는다.
-		System.out.println(location);
-		ModelAndView mView = new ModelAndView();
-		Geocoder geocoder = new Geocoder(); //Geocoder 구글 API 객체 생
-		
-		GeocoderRequest geocoderRequest = new GeocoderRequestBuilder() 
-				.setAddress(location).setLanguage("ko").getGeocoderRequest(); //주소를 좌표로 변경해주는 구글 url 명령어 주소를 java api명령어로 표현.
-		try {
-			GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
-			GeocoderResult geocoderResult=geocoderResponse.getResults().iterator().next();
-			LatLng latitudeLongitude = geocoderResult.getGeometry().getLocation(); //json형식으로 출력된 정보 중 좌표만 얻어온다.
-			Float[] coords = new Float[2]; //Float 타입의 배열에 담는다.
-			coords[0] = latitudeLongitude.getLat().floatValue(); //json형식의 좌표값을 불러온다.
-			coords[1] = latitudeLongitude.getLng().floatValue();
-
-			mView.addObject("lat", coords[0]); //구글 map API에 좌표값을 넣기위해 view로 정보를 담아 보낸다.
-			mView.addObject("lng", coords[1]);
-			System.out.println("좌표"+coords[0]+coords[1]);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		mView.addObject("addr", location);
-		return mView;
-		}
-
-	//전체 운동장 주소를 좌표로 변환하여 리턴하는 메소드
-	@Override
-	public  List<PositionDto> fieldList() {
-		
-		List<FieldDto> list = fieldDao.getList();
-		List<PositionDto> lis = new ArrayList<PositionDto>();
-		for(FieldDto tmp : list){
-			String location = tmp.getField_addr();
-			String title = tmp.getField_name();
-			int num = tmp.getNum();
-			System.out.println(tmp.getNum());
-			Geocoder geocoder = new Geocoder();
-			GeocoderRequest geocoderRequest = new GeocoderRequestBuilder()
-					.setAddress(location).setLanguage("ko").getGeocoderRequest();
-			try {
-				GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
-				GeocoderResult geocoderResult=geocoderResponse.getResults().iterator().next();
-				LatLng latitudeLongitude = geocoderResult.getGeometry().getLocation();
-				Float[] coords = new Float[2];
-				coords[0] = latitudeLongitude.getLat().floatValue();
-				coords[1] = latitudeLongitude.getLng().floatValue();
-				
-				float lat = coords[0];
-				float lng = coords[1];
-				
-				PositionDto pos = new PositionDto(num, title, lat, lng);
-				lis.add(pos);
-				
-				
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		
-		return lis;
-	}
+//	//user 정보에 저장되어 있는 주소를 좌표로 변환하는 메소
+//	@Override
+//	public ModelAndView map(HttpServletRequest request) {
+//		String id = (String)request.getSession().getAttribute("id"); 
+//		UsersDto dto = dao.getMap(id);
+//		String location = dto.getAddr(); // DB에서 받은 주소를 location에 담는다.
+//		System.out.println(location);
+//		ModelAndView mView = new ModelAndView();
+//		Geocoder geocoder = new Geocoder(); //Geocoder 구글 API 객체 생
+//		
+//		GeocoderRequest geocoderRequest = new GeocoderRequestBuilder() 
+//				.setAddress(location).setLanguage("ko").getGeocoderRequest(); //주소를 좌표로 변경해주는 구글 url 명령어 주소를 java api명령어로 표현.
+//		try {
+//			GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+//			GeocoderResult geocoderResult=geocoderResponse.getResults().iterator().next();
+//			LatLng latitudeLongitude = geocoderResult.getGeometry().getLocation(); //json형식으로 출력된 정보 중 좌표만 얻어온다.
+//			Float[] coords = new Float[2]; //Float 타입의 배열에 담는다.
+//			coords[0] = latitudeLongitude.getLat().floatValue(); //json형식의 좌표값을 불러온다.
+//			coords[1] = latitudeLongitude.getLng().floatValue();
+//
+//			mView.addObject("lat", coords[0]); //구글 map API에 좌표값을 넣기위해 view로 정보를 담아 보낸다.
+//			mView.addObject("lng", coords[1]);
+//			System.out.println("좌표"+coords[0]+coords[1]);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		mView.addObject("addr", location);
+//		return mView;
+//		}
+//
+//	//전체 운동장 주소를 좌표로 변환하여 리턴하는 메소드
+//	@Override
+//	public  List<PositionDto> fieldList() {
+//		
+//		List<FieldDto> list = fieldDao.getList();
+//		List<PositionDto> lis = new ArrayList<PositionDto>();
+//		for(FieldDto tmp : list){
+//			String location = tmp.getField_addr();
+//			String title = tmp.getField_name();
+//			int num = tmp.getNum();
+//			System.out.println(tmp.getNum());
+//			Geocoder geocoder = new Geocoder();
+//			GeocoderRequest geocoderRequest = new GeocoderRequestBuilder()
+//					.setAddress(location).setLanguage("ko").getGeocoderRequest();
+//			try {
+//				GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+//				GeocoderResult geocoderResult=geocoderResponse.getResults().iterator().next();
+//				LatLng latitudeLongitude = geocoderResult.getGeometry().getLocation();
+//				Float[] coords = new Float[2];
+//				coords[0] = latitudeLongitude.getLat().floatValue();
+//				coords[1] = latitudeLongitude.getLng().floatValue();
+//				
+//				float lat = coords[0];
+//				float lng = coords[1];
+//				
+//				PositionDto pos = new PositionDto(num, title, lat, lng);
+//				lis.add(pos);
+//				
+//				
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			}
+//		}
+//		
+//		return lis;
+//	}
 
 }

@@ -9,7 +9,10 @@ addr varchar2(200),
 detailaddr varchar2(200),
 findquestion varchar2(200), 
 findAnswer varchar2(200), 
-regdate date);
+regdate date,
+lat number,
+lng number
+);
 =======
 
 

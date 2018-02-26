@@ -7,11 +7,13 @@ public class FieldDto {
 	private String field_morning;
 	private String field_afternoon;
 	private String field_night;
-	
-	public FieldDto(){}
+	private float lat;
+	private float lng;
+
+	public FieldDto() {}
 
 	public FieldDto(int num, String field_name, String field_addr, String field_morning, String field_afternoon,
-			String field_night) {
+			String field_night, float lat, float lng) {
 		super();
 		this.num = num;
 		this.field_name = field_name;
@@ -19,6 +21,8 @@ public class FieldDto {
 		this.field_morning = field_morning;
 		this.field_afternoon = field_afternoon;
 		this.field_night = field_night;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public int getNum() {
@@ -67,6 +71,22 @@ public class FieldDto {
 
 	public void setField_night(String field_night) {
 		this.field_night = field_night;
+	}
+
+	public float getLat() {
+		return lat;
+	}
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+	public float getLng() {
+		return lng;
+	}
+
+	public void setLng(float lng) {
+		this.lng = lng;
 	}
 
 	

@@ -9,11 +9,13 @@ public class PlayListDto {
 	private String field_night;
 	private int startRowNum;
 	private int endRowNum;
+	private float lat;
+	private float lng;
 	
 	public PlayListDto(){}
 
 	public PlayListDto(int num, String field_name, String field_addr, String field_morning, String field_afternoon,
-			String field_night, int startRowNum, int endRowNum) {
+			String field_night, int startRowNum, int endRowNum, float lat, float lng) {
 		super();
 		this.num = num;
 		this.field_name = field_name;
@@ -23,6 +25,8 @@ public class PlayListDto {
 		this.field_night = field_night;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public int getNum() {
@@ -88,9 +92,23 @@ public class PlayListDto {
 	public void setEndRowNum(int endRowNum) {
 		this.endRowNum = endRowNum;
 	}
+
+	public float getLat() {
+		return lat;
+	}
+
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+	public float getLng() {
+		return lng;
+	}
+
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
 	
 	
-	
-	
-	
+
 }

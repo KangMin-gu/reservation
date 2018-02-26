@@ -120,22 +120,22 @@ public class UsersController {
 		return map;
 	}
 	
-	//운동장주소와 나의 주소 위치 호출 구글맵 연동
-	@RequestMapping("/users/fieldlist")
-	public ModelAndView authfieldList(HttpServletRequest request){
-		ModelAndView mView = service.map(request);
-		mView.setViewName("users/fieldlist");
-		return mView;
-	}
-	
-	//ajax 모든 운동장 좌표 DB에서 호출
-	@RequestMapping("/users/fieldPosition")
-	@ResponseBody
-	public List<PositionDto> fieldPosition(){
-		List<PositionDto> list = service.fieldList();
-		return list;
-	}
-	
+//	//운동장주소와 나의 주소 위치 호출 구글맵 연동
+//	@RequestMapping("/users/fieldlist")
+//	public ModelAndView authfieldList(HttpServletRequest request){
+//		ModelAndView mView = service.map(request);
+//		mView.setViewName("users/fieldlist");
+//		return mView;
+//	}
+//	
+//	//ajax 모든 운동장 좌표 DB에서 호출
+//	@RequestMapping("/users/fieldPosition")
+//	@ResponseBody
+//	public List<PositionDto> fieldPosition(){
+//		List<PositionDto> list = service.fieldList();
+//		return list;
+//	}
+//	
 }
 
 

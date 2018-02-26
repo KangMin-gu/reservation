@@ -65,8 +65,8 @@
 	
 	<insert id="insert" parameterType="playDto">
 		INSERT INTO field 
-		(num, field_name, field_addr, field_morning, field_afternoon, field_night)
-		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night})
+		(num, field_name, field_addr, field_morning, field_afternoon, field_night, lat, lng)
+		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night}, #{lat}, #{lng})
 		
 	</insert>
 	

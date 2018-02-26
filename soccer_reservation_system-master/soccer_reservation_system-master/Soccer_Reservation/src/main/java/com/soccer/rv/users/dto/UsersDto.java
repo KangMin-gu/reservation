@@ -11,11 +11,13 @@ public class UsersDto {
 	private String findQuestion;
 	private String findAnswer;
 	private String regdate;
+	private float lat;
+	private float lng;
 	
 	public UsersDto(){}
 
-	public UsersDto(String id, String name, String pwd, String email, String phone, String addr, String findQuestion,
-			String findAnswer, String regdate, String detailaddr) {
+	public UsersDto(String id, String name, String pwd, String email, String phone, String addr, String detailaddr,
+			String findQuestion, String findAnswer, String regdate, float lat, float lng) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -23,18 +25,12 @@ public class UsersDto {
 		this.email = email;
 		this.phone = phone;
 		this.addr = addr;
+		this.detailaddr = detailaddr;
 		this.findQuestion = findQuestion;
 		this.findAnswer = findAnswer;
 		this.regdate = regdate;
-		this.detailaddr = detailaddr;
-	}
-
-	public String getDetailaddr() {
-		return detailaddr;
-	}
-
-	public void setDetailaddr(String detailaddr) {
-		this.detailaddr = detailaddr;
+		this.lat = lat;
+		this.lng = lng;
 	}
 
 	public String getId() {
@@ -85,6 +81,14 @@ public class UsersDto {
 		this.addr = addr;
 	}
 
+	public String getDetailaddr() {
+		return detailaddr;
+	}
+
+	public void setDetailaddr(String detailaddr) {
+		this.detailaddr = detailaddr;
+	}
+
 	public String getFindQuestion() {
 		return findQuestion;
 	}
@@ -109,7 +113,22 @@ public class UsersDto {
 		this.regdate = regdate;
 	}
 
+	public float getLat() {
+		return lat;
+	}
 
+	public void setLat(float lat) {
+		this.lat = lat;
+	}
+
+	public float getLng() {
+		return lng;
+	}
+
+	public void setLng(float lng) {
+		this.lng = lng;
+	}
 	
 	
+
 }

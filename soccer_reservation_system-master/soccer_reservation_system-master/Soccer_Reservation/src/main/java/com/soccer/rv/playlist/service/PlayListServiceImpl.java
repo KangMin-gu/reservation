@@ -1,5 +1,6 @@
 package com.soccer.rv.playlist.service;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.code.geocoder.Geocoder;
+import com.google.code.geocoder.GeocoderRequestBuilder;
+import com.google.code.geocoder.model.GeocodeResponse;
+import com.google.code.geocoder.model.GeocoderRequest;
+import com.google.code.geocoder.model.GeocoderResult;
+import com.google.code.geocoder.model.LatLng;
 import com.soccer.rv.playlist.dao.PlayListDao;
 import com.soccer.rv.playlist.dto.PlayListDto;
 
@@ -123,6 +130,31 @@ public class PlayListServiceImpl implements PlayListService {
 
 	@Override
 	public void insert(PlayListDto dto) {
+		
+		String location = dto.getField_addr();
+		
+		Geocoder geocoder = new Geocoder(); 
+			
+			GeocoderRequest geocoderRequest = new GeocoderRequestBuilder() 
+					.setAddress(location).setLanguage("ko").getGeocoderRequest(); 
+			try {
+				GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+				GeocoderResult geocoderResult=geocoderResponse.getResults().iterator().next();
+				LatLng latitudeLongitude = geocoderResult.getGeometry().getLocation(); 
+				Float[] coords = new Float[2]; 
+				coords[0] = latitudeLongitude.getLat().floatValue(); 
+				coords[1] = latitudeLongitude.getLng().floatValue();
+				
+				float lat = coords[0];
+				float lng = coords[1];
+			
+				dto.setLat(lat);
+				dto.setLng(lng);
+			
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		 
 		dao.insert(dto);
 	}
 
