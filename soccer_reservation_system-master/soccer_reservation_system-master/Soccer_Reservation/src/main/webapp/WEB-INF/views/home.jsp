@@ -26,6 +26,7 @@
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Poiret+One'
 	rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/fotorama.css">	
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my.css" />
 </head>
 <body>
@@ -69,61 +70,38 @@
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
 				<li class="selected"><a href="home.do">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/">Team</a></li>
-				<li><a href="${pageContext.request.contextPath}/users/fieldlist.do">Near Playground</a></li>
+				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">Ground</a></li>
+				<li><a href="${pageContext.request.contextPath}/reser/fieldlist.do">Near Ground</a></li>
 				<li class="hidden-xs hidden-sm"><a rel="home" href="home.do"><img
 						class="logo"
 						src="${pageContext.request.contextPath}/resources/img/soccer.png"
 						width="200" alt="logo"></a></li>
-				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">playground List</a></li>
+				<li><a href="${pageContext.request.contextPath}/shop/shop.do">shop</a></li>
 				<li><a href="${pageContext.request.contextPath}/review/list.do">Review</a></li>
-				<li><a href="${pageContext.request.contextPath}/">Question</a></li>
+				<li><a href="${pageContext.request.contextPath}/">Cart</a></li>
 			</ul>
 		</div>
 	</div>
-	<div id="carousel-example-generic" class="carousel slide"
-		data-ride="carousel">
-		<!-- Indicators -->
-		<ol class="carousel-indicators">
-			<li data-target="#carousel-example-generic" data-slide-to="0"
-				class="active"></li>
-			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-		</ol>
 
-		<!-- Wrapper for slides -->
-		<div class="carousel-inner" role="listbox">
-			<div class="item active">
-				<img
-					src="${pageContext.request.contextPath}/resources/img/slide3.jpg"
-					alt="">
-				<div class="carousel-caption">어디서든지 우리동네 축구장을 조회하여</div>
-			</div>
-			<div class="item">
-				<img
-					src="${pageContext.request.contextPath}/resources/img/slide2.jpg"
-					alt="">
-				<div class="carousel-caption">넓은 필드를 동료들과 함께!</div>
-			</div>
-			<div class="item">
-				<img
-					src="${pageContext.request.contextPath}/resources/img/slide1.jpg"
-					alt="">
-				<div class="carousel-caption">최고의 팀웍과 우정을 나누세요!</div>
-			</div>
+		
+<div class="fotorama" data-loop="true" data-arrows="true" data-autoplay="true" data-height="750" data-fit="cover">
+	<div data-img="${pageContext.request.contextPath}/resources/img/slide1.jpg" class="inverse">
+		<div style="margin-top: 500px; height:100px; text-align: center; font-size: 50px; background-color: black; opacity: 0.8;">
+		<strong>It will be energizing in your life.</strong>
 		</div>
-
-		<!-- Controls -->
-		<a class="left carousel-control" href="#carousel-example-generic"
-			role="button" data-slide="prev"> <span
-			class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
-			class="sr-only">Previous</span>
-		</a> <a class="right carousel-control" href="#carousel-example-generic"
-			role="button" data-slide="next"> <span
-			class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
 	</div>
+	<div data-img="${pageContext.request.contextPath}/resources/img/slide2.jpg" class="inverse">
+		<div style="margin-top: 500px; height:100px; text-align: center; font-size: 50px; background-color: black; opacity: 0.8;">
+		<strong>Best playground for your team</strong>
+		</div>
+	</div>
+	<div data-img="${pageContext.request.contextPath}/resources/img/slide3.jpg" class="inverse">
+		<div style="margin-top: 500px; height:100px; text-align: center; font-size: 50px; background-color: black; opacity: 0.8;">
+		<strong>Get the best play!!</strong>
+		</div>
+	</div>
+</div>
+
 	<div class="container header-start text-center">
 		<div class="heading-icon">
 			<img src="${pageContext.request.contextPath}/resources/images/soccerfield.png" alt="" />
@@ -276,6 +254,7 @@
 		src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/fotorama.js"></script>
 	<!-- Place in the <head>, after the three links -->
 	<script>
 		$('.testimonials-slider').bxSlider({

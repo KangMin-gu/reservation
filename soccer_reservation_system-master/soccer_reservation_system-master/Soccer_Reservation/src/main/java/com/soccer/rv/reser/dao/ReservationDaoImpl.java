@@ -11,12 +11,21 @@ import org.springframework.stereotype.Repository;
 import com.soccer.rv.field.dto.FieldDto;
 import com.soccer.rv.reser.orderdto.ResDto;
 import com.soccer.rv.reser.orderdto.ReservationOrderDto;
+import com.soccer.rv.users.dto.UsersDto;
 
 @Repository
 public class ReservationDaoImpl implements ReservationDao{
 	
 	@Autowired
 	private SqlSession rvsession;
+	
+	@Override
+	public UsersDto userLocation(String id){
+		
+		UsersDto dto = rvsession.selectOne("users.map", id);
+		
+		return dto;
+	}
 	
 	// ajax field_order의 예약현 정보 가져오기
 	@Override

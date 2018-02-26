@@ -9,6 +9,7 @@ import java.util.Map;
 import com.soccer.rv.field.dto.FieldDto;
 import com.soccer.rv.reser.orderdto.ResDto;
 import com.soccer.rv.reser.orderdto.ReservationOrderDto;
+import com.soccer.rv.users.dto.UsersDto;
 
 public interface ReservationDao {
 	public ReservationOrderDto getinfo(ResDto rdto);
@@ -17,4 +18,5 @@ public interface ReservationDao {
 	public List<ReservationOrderDto> myreser(String id);
 	public void myreserdelete(ReservationOrderDto order);
 	public FieldDto getData2(String field_name);
+	public UsersDto userLocation(String id);
 }

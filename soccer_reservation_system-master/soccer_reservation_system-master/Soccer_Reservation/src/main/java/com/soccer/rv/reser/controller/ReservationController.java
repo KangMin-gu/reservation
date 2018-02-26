@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.soccer.rv.position.dto.PositionDto;
 import com.soccer.rv.reser.orderdto.ReservationOrderDto;
 import com.soccer.rv.reser.orderdto.RvinsertFormDto;
 import com.soccer.rv.reser.service.ReservationService;
@@ -40,6 +41,23 @@ public class ReservationController {
 			return order;
 		
 	}
+	
+	//운동장의 모든 위치와 유저위치 구글맵호출
+	@RequestMapping("/reser/fieldlist")
+	public ModelAndView authfieldList(HttpServletRequest request){
+		ModelAndView mView = rvservice.userLocation(request);
+		mView.setViewName("reser/fieldlist");
+		return mView;
+	}
+	
+	//ajax 모든 운동장 좌표 DB에서 호출
+	@RequestMapping("/reser/fieldPosition")
+	@ResponseBody
+	public List<PositionDto> fieldPosition(){
+		List<PositionDto> list = rvservice.fieldLocation();
+		return list;
+	}
+	
 	
 	//예약화면으로 이동
 	@RequestMapping("/reser/rv_form")

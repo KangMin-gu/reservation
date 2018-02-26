@@ -1,5 +1,6 @@
 package com.soccer.rv.reser.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,17 +10,50 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.soccer.rv.field.dao.FieldDao;
 import com.soccer.rv.field.dto.FieldDto;
+import com.soccer.rv.position.dto.PositionDto;
 import com.soccer.rv.reser.dao.ReservationDao;
 import com.soccer.rv.reser.orderdto.ResDto;
 import com.soccer.rv.reser.orderdto.ReservationOrderDto;
 import com.soccer.rv.reser.orderdto.RvinsertFormDto;
+import com.soccer.rv.users.dto.UsersDto;
 
 @Service
 public class ReservationServiceImpl implements ReservationService{
 	
 	@Autowired
 	private ReservationDao rvdao;
+	
+	@Autowired
+	private FieldDao fielddao;
+	
+	//구글맵 회원의 주소좌표 호출
+	@Override
+	public ModelAndView userLocation(HttpServletRequest request){
+		String id = (String) request.getSession().getAttribute("id");
+		UsersDto dto = rvdao.userLocation(id);
+		ModelAndView mView = new ModelAndView();
+		mView.addObject("dto", dto);
+		
+		return mView;
+	}
+	
+	//ajax 운동장DB 좌표 호출
+	public List<PositionDto> fieldLocation(){
+		List<FieldDto> flist = fielddao.getList();
+		List<PositionDto> list= new ArrayList<>();
+		for (FieldDto tmp : flist) {
+			int num = tmp.getNum();
+			String title = tmp.getField_name();
+			float lat = tmp.getLat();
+			float lng = tmp.getLng();
+			
+			PositionDto pos = new PositionDto(num, title, lat, lng);
+			list.add(pos);
+		}
+		return list;
+	}
 	
 	//예약 현황페이지로 이동하면서 정보가져오기
 	@Override

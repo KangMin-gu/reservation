@@ -30,4 +30,6 @@
 <select id="map" parameterType="usersDto" resultType="usersDto">
 	select * from users where id=#{id}
 </select>
+
+
 </mapper>

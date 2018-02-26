@@ -201,8 +201,8 @@
 	});
 // 페이지 로딩시 구글맵 센터 좌표 	
 	function initMap() {
-		var lat =  parseFloat("${lat }"); //jquery와 jstl이 충돌나서 String으로 넣은후 원래 타입인 parseFloat으로 형변환.
-		var lng =  parseFloat("${lng }");
+		var lat =  parseFloat("${dto.lat }"); //jquery와 jstl이 충돌나서 String으로 넣은후 원래 타입인 parseFloat으로 형변환.
+		var lng =  parseFloat("${dto.lng }");
 	    var myLocation = { lat : lat, lng : lng };
 	    var map = new google.maps.Map(document.getElementById('map'), {
 	      zoom: 14,

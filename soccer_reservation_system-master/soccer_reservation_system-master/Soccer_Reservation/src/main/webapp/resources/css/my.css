@@ -7,3 +7,7 @@ float:right;
 	display:inline;
 	padding:10px;
 }
+
+.slide{
+margin-top: 500px; height:100px; text-align: center; font-size: 50px; background-color: black; opacity: 0.8;	
+}
