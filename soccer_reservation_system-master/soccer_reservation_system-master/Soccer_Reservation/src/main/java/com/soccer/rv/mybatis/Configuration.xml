@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Mapper 에서 사용할 Dto 별칭 정의하기 -->
+	<typeAliases>
+		<typeAlias type="com.soccer.rv.users.dto.UsersDto" alias="usersDto"/>
+		<typeAlias type="com.soccer.rv.review.dto.ReviewDto" alias="reviewDto"/>	
+		<typeAlias type="com.soccer.rv.review.dto.ReviewCommentDto" alias="commentDto"/>					
+		<typeAlias type="com.soccer.rv.field.dto.FieldDto" alias="fieldDto"/>
+		<typeAlias type="com.soccer.rv.reser.orderdto.ReservationOrderDto" alias="reservationOrderDto"/>
+		<typeAlias type="com.soccer.rv.reser.orderdto.ResDto" alias="resDto"/>
+		<typeAlias type="com.soccer.rv.playlist.dto.PlayListDto" alias="playDto"/>
+	</typeAliases>
+	
+	<!-- sql 문을 정의하고 있는 xml 문서 -->
+	<mappers>
+		<mapper resource="com/soccer/rv/mybatis/UsersMapper.xml"/>
+		<mapper resource="com/soccer/rv/mybatis/ReviewMapper.xml"/>		
+		<mapper resource="com/soccer/rv/mybatis/ReviewCommentMapper.xml"/>				
+		<mapper resource="com/soccer/rv/mybatis/FieldMapper.xml"/>
+		<mapper resource="com/soccer/rv/mybatis/ReservationMapper.xml"/>
+		<mapper resource="com/soccer/rv/mybatis/PlayListMapper.xml"/>
+		<mapper resource="com/soccer/rv/mybatis/AdminMapper.xml"/>
+
+	</mappers>	
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

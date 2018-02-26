@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+#loginUl{
+float:right;
+}
+
+.loginLi{
+	display:inline;
+	padding:10px;
+}
+
+.panel-body{
+	height: 500px;
+	border-radius: 4px;
+	
+	
+}
+
+.text-center{
+	height: 100%;
+}
+
+input[type=text]{
+	width: 95%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+

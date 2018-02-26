@@ -1,0 +1,23 @@
+#loginUl{
+float:right;
+}
+
+.loginLi{
+	display:inline;
+	padding:10px;
+}
+
+	#myForm input, #myForm select{
+		width: 50%;
+		padding: 8px 8px;
+		margin: 8px 0 0 -10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+	
+	input:focus::-webkit-input-placeholder { 
+		color: transparent; }
+		
+	.form-group{margin-bottom: 0px !important;}
+
+	.form-group label{width: 100px; text-align: left;}	

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="playlist">
+	<sql id="playlistColumns">
+		num, field_name, field_addr, field_morning, field_afternoon, field_night
+	</sql>
+	
+	<select id="getList" resultType="playDto">
+		SELECT *
+		FROM (SELECT result1.*,ROWNUM rnum
+		FROM (SELECT
+		<include refid="playlistColumns" />
+		FROM field
+		<where>
+			<if test="field_name != null">
+				OR field_name LIKE '%'||#{field_name}||'%'
+			</if>
+			<if test="field_addr != null">
+				OR field_addr LIKE '%'||#{field_addr}||'%'
+			</if>
+
+		</where>
+		ORDER BY num DESC) result1
+		)
+		WHERE rnum BETWEEN #{startRowNum} AND
+		#{endRowNum}
+		
+	</select>
+	
+	<select id="getCount" parameterType="playDto" resultType="int">
+				SELECT NVL(MAX(ROWNUM), 0)
+		FROM field
+		<where>
+			<if test="field_name != null">
+				OR field_name LIKE '%'||#{field_name}||'%'
+			</if>
+			<if test="field_addr != null">
+				OR field_addr LIKE '%'||#{field_addr}||'%'
+			</if>
+
+		</where>
+	</select>
+
+	<select id="getData" parameterType="playDto" resultType="playDto">
+		SELECT result1.*
+		FROM
+		( SELECT
+		<include refid="playlistColumns" />
+		,
+		LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum,
+		LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum
+		FROM field
+		<where>
+			<if test="field_name != null">
+				OR field_name LIKE '%'||#{field_name}||'%'
+			</if>
+			<if test="field_addr != null">
+				OR field_addr LIKE '%'||#{field_addr}||'%'
+			</if>
+
+		</where>
+		ORDER BY num DESC ) result1
+		WHERE num=#{num}
+	</select>
+	
+	<insert id="insert" parameterType="playDto">
+		INSERT INTO field 
+		(num, field_name, field_addr, field_morning, field_afternoon, field_night)
+		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night})
+		
+	</insert>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM field
+		WHERE num=#{num}
+	</delete>
+	
+	<update id="update" parameterType="playDto">
+		UPDATE field
+		set field_name=#{field_name}, field_addr=#{field_addr}
+		WHERE num=#{num}
+	</update>
+	
+	<select id="getData2" parameterType="int" resultType="playDto">
+		SELECT * FROM field WHERE num=#{num}
+	 </select>
+</mapper>
+
+
+
+
+
+

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="review">
+
+	<!-- 자주 사용하는 sql 문을 미리 정의 해 놓기 -->
+	<sql id="reviewColumns">
+		num,writer,title,content,viewCount,
+		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+	</sql>
+	
+	<select id="getList" parameterType="reviewDto" 
+		resultType="reviewDto">
+		SELECT *
+		FROM (SELECT result1.*,ROWNUM rnum
+			  FROM (SELECT <include refid="reviewColumns"/>
+			  		FROM review 
+			  		<where>
+						<if test="writer != null">
+							OR writer LIKE '%'||#{writer}||'%'
+						</if>
+						<if test="title != null">
+							OR title LIKE '%'||#{title}||'%'
+						</if>
+						<if test="content != null">
+							OR content LIKE '%'||#{content}||'%'
+						</if>
+					</where>	
+			  		ORDER BY num DESC) result1
+			  )
+		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}		
+	</select>
+
+	<select id="getCount" parameterType="reviewDto"
+		resultType="int">
+		SELECT NVL(MAX(ROWNUM), 0)
+		FROM review
+		<where>
+			<if test="writer != null">
+				OR writer LIKE '%'||#{writer}||'%'
+			</if>
+			<if test="title != null">
+				OR title LIKE '%'||#{title}||'%'
+			</if>
+			<if test="content != null">
+				OR content LIKE '%'||#{content}||'%'
+			</if>
+		</where>	
+	</select>
+	
+	<insert id="insert" parameterType="reviewDto">
+		INSERT INTO review
+		(num, writer, title, content, viewCount, regdate)
+		VALUES(review_seq.NEXTVAL, 
+		#{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)	
+	</insert>
+	
+	<update id="addCount" parameterType="int">
+		UPDATE review
+		SET viewCount=viewCount+1
+		WHERE num=#{num}
+	</update>
+	
+	<select id="getData" parameterType="reviewDto"
+		resultType="reviewDto">
+	 	SELECT result1.*
+	 	FROM
+		 	( SELECT <include refid="reviewColumns"/>,
+		 	LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum,
+		 	LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum
+		 	FROM review
+		 	<where>
+				<if test="writer != null">
+					OR writer LIKE '%'||#{writer}||'%'
+				</if>
+				<if test="title != null">
+					OR title LIKE '%'||#{title}||'%'
+				</if>
+				<if test="content != null">
+					OR content LIKE '%'||#{content}||'%'
+				</if>
+			</where>
+		 	ORDER BY num DESC ) result1
+	 	WHERE num=#{num}
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM review
+		WHERE num=#{num}
+	</delete>
+	
+	<select id="getData2" parameterType="int"
+		resultType="reviewDto">
+		SELECT <include refid="reviewColumns"/>
+		FROM review
+		WHERE num=#{num}	
+	</select>
+	
+	<update id="update" parameterType="reviewDto">
+		UPDATE review
+		SET title=#{title}, content=#{content}
+		WHERE num=#{num}
+	</update>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

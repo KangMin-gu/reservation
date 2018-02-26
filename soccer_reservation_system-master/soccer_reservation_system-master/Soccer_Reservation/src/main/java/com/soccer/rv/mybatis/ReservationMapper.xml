@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="reservation">
+	<!-- 운동장의 정보를 가져오기 -->
+	<select id="getData" parameterType="int" resultType="fieldDto">
+		 select * from field where num=#{num}
+	</select>
+	<!--ajax 해당 운동장의 예약현황 가져오기 -->
+	<select id="getinfo" parameterType="resDto" resultType="reservationOrderDto">
+		select * from field_order  
+		where field_name=#{field_name} and field_date=#{field_date}
+	</select>
+	
+	<!-- 예약하기 merge into를 활용한 동적쿼리  -->
+	<update id="rvinsert" parameterType="reservationOrderDto">
+	MERGE INTO field_order
+	USING dual
+	on(field_date=#{field_date} AND field_name=#{field_name})
+	WHEN MATCHED THEN
+	UPDATE
+	<set>
+	<choose>
+		<when test="field_m_id != null">
+			field_m_time=#{field_m_time}, field_m_tname=#{field_m_tname}, field_m_phone=#{field_m_phone}, field_m_teamNP=#{field_m_teamNP}, field_m_id=#{field_m_id}, field_m_etc=#{field_m_etc}
+		</when>
+		<when test="field_a_id != null">
+			field_a_time=#{field_a_time}, field_a_tname=#{field_a_tname}, field_a_phone=#{field_a_phone}, field_a_teamNP=#{field_a_teamNP}, field_a_id=#{field_a_id}, field_a_etc=#{field_a_etc}
+		</when>
+		<otherwise>
+			field_n_time=#{field_n_time}, field_n_tname=#{field_n_tname}, field_n_phone=#{field_n_phone}, field_n_teamNP=#{field_n_teamNP}, field_n_id=#{field_n_id}, field_n_etc=#{field_n_etc}
+		</otherwise>
+	</choose>
+	</set>
+	when not matched then
+	insert  (
+	num, field_name, field_Date, 
+	field_m_time, field_m_tname, field_m_teamNP, field_m_phone, field_m_id, field_m_etc,
+	field_a_time, field_a_tname, field_a_teamNP, field_a_phone, field_a_id, field_a_etc,
+	field_n_time, field_n_tname, field_n_teamNP, field_n_phone, field_n_id, field_n_etc
+	)
+	values (field_order_seq.nextval, #{field_name}, #{field_date}, 
+	#{field_m_time, jdbcType=VARCHAR}, #{field_m_tname, jdbcType=VARCHAR}, #{field_m_teamNP, jdbcType=VARCHAR}, #{field_m_phone, jdbcType=VARCHAR}, #{field_m_id, jdbcType=VARCHAR}, #{field_m_etc, jdbcType=VARCHAR},
+ 	#{field_a_time, jdbcType=VARCHAR}, #{field_a_tname, jdbcType=VARCHAR}, #{field_a_teamNP, jdbcType=VARCHAR}, #{field_a_phone, jdbcType=VARCHAR}, #{field_a_id, jdbcType=VARCHAR}, #{field_a_etc, jdbcType=VARCHAR},
+ 	#{field_n_time, jdbcType=VARCHAR}, #{field_n_tname, jdbcType=VARCHAR}, #{field_n_teamNP, jdbcType=VARCHAR}, #{field_n_phone, jdbcType=VARCHAR}, #{field_n_id, jdbcType=VARCHAR}, #{field_n_etc, jdbcType=VARCHAR}
+	)   
+	</update>
+	
+	<select id="gettime" parameterType="String" resultType="fieldDto">
+		select * from field where field_name=#{field_name} 
+	</select>
+	
+	<select id="myreser" parameterType="String" resultType="reservationOrderDto">
+		select * from field_order where field_m_id=#{id} or field_a_id=#{id} or field_n_id=#{id}
+	</select>
+	
+	<!-- 예약 취소 -->
+	<update id="myreserdelete" parameterType="reservationOrderDto" >
+		update field_order 
+		<set>
+		<choose>
+			<when test="field_m_id != null">
+			 field_m_time=null, field_m_tname=null, field_m_teamNP=null, field_m_phone=null, field_m_id=null, field_m_etc=null
+			</when>
+			<when test="field_a_id != null">
+			field_a_time=null, field_a_tname=null, field_a_teamNP=null, field_a_phone=null, field_a_id=null, field_a_etc= null
+			</when>
+			<otherwise>
+			field_n_time=null, field_n_tname=null, field_n_teamNP=null, field_n_phone=null, field_n_id=null, field_n_etc=null
+			</otherwise>
+		</choose>
+		</set>
+		where field_name=#{field_name} and field_date=#{field_date}
+	</update>
+
+	
+</mapper>

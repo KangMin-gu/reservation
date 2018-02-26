@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+#loginUl{
+float:right;
+}
+
+.loginLi{
+	display:inline;
+	padding:10px;
+}
+#map {
+    height: 400px;
+    width: 100%;
+  }
+.heading-icon{
+	width:10%
+}  
+#soccericon{
+	width:100%;
+}
+.maprv{
+	width:150px;
+}

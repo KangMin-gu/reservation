@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+#loginUl{
+float:right;
+}
+
+.loginLi{
+	display:inline;
+	padding:10px;
+}
+
+
+	#myForm input{
+		width: 50%;
+		padding: 8px 8px;
+		margin: 8px 0 0 -10px;
+		border: 1px solid #ccc;
+		border-radius: 4px;
+	}
+	input:focus::-webkit-input-placeholder { 
+		color: transparent; }
+	
+

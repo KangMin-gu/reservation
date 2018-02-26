@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+#texta{
+	background: rgba(153, 211, 213, 0.32);
+	margin-right: 200px;
+	border-color: rgba(153, 211, 213, 0.32);
+	border:50px;
+}
+.left-box {
+  float: left;
+}

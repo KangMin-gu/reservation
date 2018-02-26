@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="admin">
+
+<select id="getList"  resultType="usersDto" >
+	select  id, name, email, addr, detailaddr, phone
+	from users 
+	
+</select>
+
+<select id="getData" parameterType="String" resultType="usersDto">
+	select  id, name, email, addr, detailaddr, phone
+	from users 
+	where id=#{id}
+</select>
+
+<update id="update" parameterType="usersDto">
+	update users 
+	set  email=#{email}, addr=#{addr}, detailaddr=#{detailaddr}, phone=#{phone}
+	where id=#{id}
+</update>
+
+<delete id="delete" parameterType="String">
+	delete from users where id=#{id}
+</delete>
+
+<!-- ======================================= -->
+<select id="rvList" parameterType="String" resultType="reservationOrderDto">
+		select * 
+		from field_order 
+		where field_m_id=#{id} or field_a_id=#{id} or field_n_id=#{id}
+</select>
+
+<select id="gettime" parameterType="String" resultType="fieldDto">
+		select * 
+		from field 
+		where field_name=#{field_name}
+</select>
+
+<!-- 예약 취소 -->
+<update id="rvDelete" parameterType="reservationOrderDto" >
+	update field_order 
+	<set>
+	<choose>
+		<when test="field_m_id != null">
+		 field_m_time=null, field_m_tname=null, field_m_teamNP=null, field_m_phone=null, field_m_id=null, field_m_etc=null
+		</when>
+		<when test="field_a_id != null">
+		field_a_time=null, field_a_tname=null, field_a_teamNP=null, field_a_phone=null, field_a_id=null, field_a_etc= null
+		</when>
+		<otherwise>
+		field_n_time=null, field_n_tname=null, field_n_teamNP=null, field_n_phone=null, field_n_id=null, field_n_etc=null
+		</otherwise>
+	</choose>
+	</set>
+	where field_name=#{field_name} and field_date=#{field_date}
+</update>
+
+</mapper>
