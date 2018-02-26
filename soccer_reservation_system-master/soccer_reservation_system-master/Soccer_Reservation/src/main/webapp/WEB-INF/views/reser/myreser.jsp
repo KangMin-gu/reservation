@@ -138,7 +138,15 @@
 										<td>${tmp.field_m_teamNP }</td>
 										<td>${tmp.field_m_phone }</td>
 										<td>${tmp.field_m_etc }</td>
-										<td><a class="btn btn-danger btn-sm" href="rvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}">예약취소</a></td>
+										<c:choose>
+											<c:when test="${tmp.booldate eq true }">
+												<td> 취소기한 초과 </td>
+											</c:when>
+											<c:otherwise>
+												<td><a class="btn btn-danger btn-sm" href="rvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}">예약취소</a></td>
+											</c:otherwise>
+										</c:choose>
+										
 							</c:if>
 							</tr>
 							<tr>
@@ -151,7 +159,14 @@
 										<td>${tmp.field_a_teamNP }</td>
 										<td>${tmp.field_a_phone }</td>
 										<td>${tmp.field_a_etc }</td>
-										<td><a class="btn btn-danger btn-sm" href="rvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}">예약취소</a></td>
+										<c:choose>
+											<c:when test="${tmp.booldate eq true }">
+												<td> 취소기한 초과 </td>
+											</c:when>
+											<c:otherwise>
+												<td><a class="btn btn-danger btn-sm" href="rvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}">예약취소</a></td>
+											</c:otherwise>
+										</c:choose>
 							</c:if>
 							</tr>
 							<tr>
@@ -164,7 +179,14 @@
 										<td>${tmp.field_n_teamNP }</td>
 										<td>${tmp.field_n_phone }</td>
 										<td>${tmp.field_n_etc }</td>
-										<td><a class="btn btn-danger btn-sm" href="rvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}">예약취소</a></td>
+										<c:choose>
+											<c:when test="${tmp.booldate eq true }">
+												<td> 취소기한 초과 </td>
+											</c:when>
+											<c:otherwise>
+												<td><a class="btn btn-danger btn-sm" href="rvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}">예약취소</a></td>
+											</c:otherwise>
+										</c:choose>
 							</c:if>
 							</tr>
 								</c:forEach>

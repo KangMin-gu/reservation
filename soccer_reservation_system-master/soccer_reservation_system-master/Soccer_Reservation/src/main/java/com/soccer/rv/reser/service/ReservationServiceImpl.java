@@ -1,6 +1,10 @@
 package com.soccer.rv.reser.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -170,8 +174,56 @@ public class ReservationServiceImpl implements ReservationService{
 	public ModelAndView myreser(HttpServletRequest request) {
 		String id = (String)request.getSession().getAttribute("id");
 		List<ReservationOrderDto> list = rvdao.myreser(id);
+		List<ReservationOrderDto> olist = new ArrayList<>();
+		for (ReservationOrderDto tmp : list) {
+			
+			String rvDate = tmp.getField_date();
+			//오늘 기준 내일날짜를 구한다.
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DATE, 1);
+			//Date 에담는다.
+			Date day = cal.getTime();
+			System.out.println(day + "예약취소기준날짜");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");	
+			
+			try {
+				//예약날짜를 Date로 형변환
+				Date rvD = format.parse(rvDate);
+				//내일 날짜와 오늘 날짜 비교
+				boolean booldate =day.after(rvD);	
+				
+				int num = tmp.getNum();
+				String field_name = tmp.getField_name();
+				String field_date = tmp.getField_date();
+				String field_m_time = tmp.getField_m_time();
+				String field_m_tname = tmp.getField_m_tname();
+				String field_m_phone = tmp.getField_m_phone();
+				int field_m_teamNP = tmp.getField_m_teamNP();
+				String field_m_id = tmp.getField_m_id();
+				String field_m_etc = tmp.getField_m_etc();
+				String field_a_time = tmp.getField_a_time();
+				String field_a_tname =tmp.getField_a_tname();
+				String field_a_phone = tmp.getField_a_phone();
+				int field_a_teamNP = tmp.getField_a_teamNP();
+				String field_a_id = tmp.getField_a_id();
+				String field_a_etc = tmp.getField_a_etc();
+				String field_n_time = tmp.getField_n_time();
+				String field_n_tname =tmp.getField_n_tname();
+				String field_n_phone = tmp.getField_n_phone();
+				int field_n_teamNP = tmp.getField_n_teamNP();
+				String field_n_id = tmp.getField_n_id();
+				String field_n_etc = tmp.getField_n_etc();
+				ReservationOrderDto order = new ReservationOrderDto(num, field_name, field_date, field_m_time, field_m_tname, field_m_phone, field_m_teamNP, field_m_id, field_m_etc, field_a_time, field_a_tname, field_a_phone, field_a_teamNP, field_a_etc, field_a_id, field_n_time, field_n_tname, field_n_phone, field_n_teamNP, field_n_id, field_n_etc, booldate);
+				// boolean 값을 order에 넣는다.
+				order.setBooldate(booldate);
+				olist.add(order);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
 		ModelAndView mView = new ModelAndView();
-		mView.addObject("list", list);
+		mView.addObject("list", olist);
 		mView.addObject("id", id);
 		return mView;
 	}
