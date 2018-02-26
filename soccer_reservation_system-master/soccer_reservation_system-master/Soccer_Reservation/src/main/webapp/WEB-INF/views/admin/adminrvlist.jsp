@@ -30,6 +30,7 @@
 </head>
 <body>
 <div class="header container">
+${booldate }
 <!-- 세션에 id의 유무에따라 보여지는 loginView -->
 <c:choose>
 	<c:when test="${not empty id }">
@@ -130,42 +131,69 @@
 							<c:if test="${tmp.field_m_id eq id }">
 										<td>${tmp.num }</td>
 										<td>${tmp.field_name }</td>
-										<td>${tmp.field_date }</td>
+										<td id="m">${tmp.field_date }</td>
 										<td>${tmp.field_m_time }</td>
 										<td>${tmp.field_m_tname }</td>
 										<td>${tmp.field_m_teamNP }</td>
 										<td>${tmp.field_m_phone }</td>
 										<td>${tmp.field_m_etc }</td>
-										<td><a class="btn btn-danger btn-sm" href="adminrvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}&field_m_id=${tmp.field_m_id}
-										&field_a_id=${tmp.field_a_id}&field_n_id=${tmp.field_n_id}">예약취소</a></td>
+										<c:choose>
+											<c:when test="${tmp.booldate eq true }">
+												<td> 취소기한 초과 </td>
+											</c:when>
+											<c:otherwise>
+												<td>
+												<a class="btn btn-danger btn-sm" href="adminrvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}&field_m_id=${tmp.field_m_id}
+												&field_a_id=${tmp.field_a_id}&field_n_id=${tmp.field_n_id}">예약취소</a>
+												</td>
+											</c:otherwise>
+										</c:choose>
 							</c:if>
 							</tr>
 							<tr>
 									<c:if test="${tmp.field_a_id eq id }">
 										<td>${tmp.num }</td>
 										<td>${tmp.field_name }</td>
-										<td>${tmp.field_date }</td>
+										<td id="a">${tmp.field_date }</td>
 										<td>${tmp.field_a_time }</td>
 										<td>${tmp.field_a_tname }</td>
 										<td>${tmp.field_a_teamNP }</td>
 										<td>${tmp.field_a_phone }</td>
 										<td>${tmp.field_a_etc }</td>
-										<td><a class="btn btn-danger btn-sm" href="adminrvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}&field_m_id=${tmp.field_m_id}
-										&field_a_id=${tmp.field_a_id}&field_n_id=${tmp.field_n_id}">예약취소</a></td>
+										<c:choose>
+											<c:when test="${tmp.booldate eq true }">
+												<td> 취소기한 초과 </td>
+											</c:when>
+											<c:otherwise>
+												<td>
+												<a class="btn btn-danger btn-sm" href="adminrvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}&field_m_id=${tmp.field_m_id}
+												&field_a_id=${tmp.field_a_id}&field_n_id=${tmp.field_n_id}">예약취소</a>
+												</td>
+											</c:otherwise>
+										</c:choose>
 							</c:if>
 							</tr>
 							<tr>
 									<c:if test="${tmp.field_n_id eq id }">
 										<td>${tmp.num }</td>
 										<td>${tmp.field_name }</td>
-										<td>${tmp.field_date }</td>
+										<td id="n">${tmp.field_date }</td>
 										<td>${tmp.field_n_time }</td>
 										<td>${tmp.field_n_tname }</td>
 										<td>${tmp.field_n_teamNP }</td>
 										<td>${tmp.field_n_phone }</td>
 										<td>${tmp.field_n_etc }</td>
-										<td><a class="btn btn-danger btn-sm" href="adminrvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}&field_m_id=${tmp.field_m_id}
-										&field_a_id=${tmp.field_a_id}&field_n_id=${tmp.field_n_id}">예약취소</a></td>
+										<c:choose>
+											<c:when test="${tmp.booldate eq true }">
+												<td> 취소기한 초과 </td>
+											</c:when>
+											<c:otherwise>
+												<td>
+												<a class="btn btn-danger btn-sm" href="adminrvdelete.do?fieldname=${tmp.field_name}&fielddate=${tmp.field_date}&fieldmornig=${tmp.field_m_time}&fieldafternoon=${tmp.field_a_time}&fieldnight=${tmp.field_n_time}&field_m_id=${tmp.field_m_id}
+												&field_a_id=${tmp.field_a_id}&field_n_id=${tmp.field_n_id}">예약취소</a>
+												</td>
+											</c:otherwise>
+										</c:choose>
 							</c:if>
 							</tr>
 								</c:forEach>
@@ -231,5 +259,25 @@
 	src="${pageContext.request.contextPath }/resources/js/bootstrap.min.js"></script>
 <script
 	src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
+	
+	
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

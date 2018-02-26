@@ -1,11 +1,17 @@
 package com.soccer.rv.admin.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.servlet.ModelAndView;
-import java.util.List;
+
 import com.soccer.rv.admin.dao.AdminDao;
 import com.soccer.rv.field.dto.FieldDto;
 import com.soccer.rv.reser.orderdto.ReservationOrderDto;
@@ -71,14 +77,55 @@ public class AdminServiceIpml implements AdminService{
 	
 	/*============================================*/
 	
-	//회원 예약정보 확인
+	//회원 예약정보 확인 및 기간 초과시취소불가 기능
 	@Override
 	public ModelAndView rvList(HttpServletRequest request) {
 		String id = (String)request.getParameter("id");
-		System.out.println("회원정보에서 id 가져왔다." + id);
-		List<ReservationOrderDto> list =adminDao.rvList(id);
+		List<ReservationOrderDto> list =adminDao.rvList(id);	
+		List<ReservationOrderDto> olist = new ArrayList<>();
+		for (ReservationOrderDto tmp : list) {
+			String rvDate = tmp.getField_date();
+			Date day = new Date();
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");		
+			try {
+				Date rvD = format.parse(rvDate);
+				boolean booldate =rvD.before(day);		
+				System.out.println(booldate);
+				System.out.println(rvDate);
+				int num = tmp.getNum();
+				String field_name = tmp.getField_name();
+				String field_date = tmp.getField_date();
+				String field_m_time = tmp.getField_m_time();
+				String field_m_tname = tmp.getField_m_tname();
+				String field_m_phone = tmp.getField_m_phone();
+				int field_m_teamNP = tmp.getField_m_teamNP();
+				String field_m_id = tmp.getField_m_id();
+				String field_m_etc = tmp.getField_m_etc();
+				String field_a_time = tmp.getField_a_time();
+				String field_a_tname =tmp.getField_a_tname();
+				String field_a_phone = tmp.getField_a_phone();
+				int field_a_teamNP = tmp.getField_a_teamNP();
+				String field_a_id = tmp.getField_a_id();
+				String field_a_etc = tmp.getField_a_etc();
+				String field_n_time = tmp.getField_n_time();
+				String field_n_tname =tmp.getField_n_tname();
+				String field_n_phone = tmp.getField_n_phone();
+				int field_n_teamNP = tmp.getField_n_teamNP();
+				String field_n_id = tmp.getField_n_id();
+				String field_n_etc = tmp.getField_n_etc();
+				ReservationOrderDto order = new ReservationOrderDto(num, field_name, field_date, field_m_time, field_m_tname, field_m_phone, field_m_teamNP, field_m_id, field_m_etc, field_a_time, field_a_tname, field_a_phone, field_a_teamNP, field_a_etc, field_a_id, field_n_time, field_n_tname, field_n_phone, field_n_teamNP, field_n_id, field_n_etc, booldate);
+				order.setBooldate(booldate);
+				olist.add(order);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		
+	
+		System.out.println(list.get(1));
 		ModelAndView mView = new ModelAndView();
-		mView.addObject("list",list);
+		mView.addObject("list",olist);
 		mView.addObject("id", id);
 		return mView;
 	}
