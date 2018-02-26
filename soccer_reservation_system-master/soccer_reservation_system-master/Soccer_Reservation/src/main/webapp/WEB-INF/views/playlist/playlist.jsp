@@ -100,7 +100,7 @@
 		<div class="row">
 			<div class="divider col-sm-12 col-xs-12 col-md-12">
 				<div class="header-text">
-					<span>축구장 리스트</span>
+					Ground<span>List</span>
 					<div class="container header-start text-center">
 						<div class="heading-icon">
 							<img src="https://png.icons8.com/material/96/000000/stadium.png">

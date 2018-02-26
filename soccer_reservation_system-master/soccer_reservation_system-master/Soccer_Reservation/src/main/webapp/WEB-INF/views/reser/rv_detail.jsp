@@ -210,9 +210,10 @@ $("#datepicker, rv_time").change(function(){
 				if(data){
 					
 					if(data.field_m_tname != null){
-						$("#morning").text(data.field_m_tname);
+						$("#morning").text(data.field_m_tname+"   "+"팀이 예약 중...");
 						$("#morninga").attr('disabled', 'disabled');
 						$("#morning").removeAttr('class','text-success');	
+						$("#morning").attr('class','text-danger');
 					}else{
 						$("#morning").text("예약가능합니다.");
 						$("#morninga").removeAttr('disabled');
@@ -220,9 +221,10 @@ $("#datepicker, rv_time").change(function(){
 					}
 					
 					if(data.field_a_tname != null){
-						$("#afternoon").text(data.field_a_tname);
+						$("#afternoon").text(data.field_a_tname+"   "+"팀이 예약 중...");
 						$("#afternoona").attr('disabled', 'disabled');
 						$("#afternoon").removeAttr('class','text-success');
+						$("#afternoon").attr('class','text-danger');
 					}else{
 						$("#afternoon").text("예약가능합니다.");
 						$("#afternoona").removeAttr('disabled');	
@@ -230,10 +232,10 @@ $("#datepicker, rv_time").change(function(){
 					}
 					
 					if(data.field_n_tname != null){
-						$("#night").text(data.field_n_tname);
+						$("#night").text(data.field_n_tname+"   "+"팀이 예약 중...");
 						$("#nighta").attr('disabled', 'disabled');
 						$("#night").removeAttr('class','text-success');
-						
+						$("#night").attr('class','text-danger');
 					}else{
 						$("#night").text("예약가능합니다.");
 						$("#nighta").removeAttr('disabled');

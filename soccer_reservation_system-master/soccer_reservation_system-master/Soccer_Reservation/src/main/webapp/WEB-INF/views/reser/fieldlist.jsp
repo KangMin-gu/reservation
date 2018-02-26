@@ -94,24 +94,27 @@
 	</div>
 <!-- ============TOP============= -->
 <!-- ===========소제목============ -->
-<div class="container">
-	<div class="row">
-		<div class="divider col-sm-12 col-xs-12 col-md-12">
-			<div class="header-text"> Near <span>PlayGround</span></div>
-				<div class="row">
-					<div class="col-sm-12 text-center">
-						<div class="heading-icon" >
-							<img id="soccericon" src="${pageContext.request.contextPath}/resources/images/mylocation.png"/>
+	<div class="container">
+		<div class="row">
+			<div class="divider col-sm-12 col-xs-12 col-md-12">
+				<div class="header-text">
+					Near<span>Ground</span>
+					<div class="container header-start text-center">
+						<div class="heading-icon">
+							<img src="https://png.icons8.com/material/96/000000/stadium.png">
 						</div>
-					</div>
+						<h1 class="main-text">가까운 축구장을 찾아보세요!</h1>
+						<p class="text-center sub-text">
+							<em class="first-line"> 지도에서 여러분이 원하는 운동장을 찾고 바로 예약하세요! </em>
+								<em class="next-line">
+								</em>
+						</p>
+					</div>	
+					
 				</div>
-				<div class=" header-start text-center">
-					<h1 class="main-text">여러분의 동네의 마음에 드는 축구장을 무료로 예약하세요!</h1>
-					<p class="text-center sub-text">지도에서 마음에 드는 축구장을 클릭 후, 예약하기를 눌르세요!</p>
-				</div>
+			</div>
 		</div>
 	</div>
-</div>
 <!-- ===========소제목============ -->
 <!-- ============본문============== -->
 
@@ -122,7 +125,7 @@
 				<div class="panel">
 					<div class="panel-body">
 						<h3> 여러분의 집 주변을 중심으로 축구장이 나옵니다.</h3>
-						<p>현재 나의 주소는 <strong>${addr }</strong>입니다.</p>
+						<p><strong>Mark Up</strong>을 눌르면 바로 예약하실 수 있습니다.</p>
 						<div id="map"></div>
 					</div>	
 				</div>
