@@ -123,11 +123,7 @@
 			<div class=" col-md-12 text-center">
 				<div class="panel">
 					<div class="panel-body" style="background-color: #def0f1;">
-							<div style="float:right;">
-								<c:if test="${id eq 'admin' }">
-									<a class="btn  btn-md" href="insertform.do">운동장추가</a>
-								</c:if>
-							</div>
+
 						<table id="listtable" class="table table-hover ">
 							<thead>
 								<tr>
@@ -162,6 +158,12 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<div style="float:right;">
+							<c:if test="${id eq 'admin' }">
+								<a class="btn  btn-default" href="insertform.do">운동장추가</a>
+								<a class="btn  btn-default" href="${pageContext.request.contextPath}/admin/adminpage.do">관리자메뉴</a>
+							</c:if>
+						</div>
 						<div style="float:middle; class="container">
 
 

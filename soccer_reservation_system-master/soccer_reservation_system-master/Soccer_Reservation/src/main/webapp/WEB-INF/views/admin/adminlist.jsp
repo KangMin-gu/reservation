@@ -144,7 +144,7 @@
 								</c:forEach>
 							</tbody>
 						</table>
-						<a class="btn btn-default pull-right" href="${pageContext.request.contextPath}/">메인페이지바로가기</a>
+						<a class="btn btn-default pull-right" href="${pageContext.request.contextPath}/admin/adminpage.do">관리자메뉴</a>
 					</div>
 				</div>
 			</div>

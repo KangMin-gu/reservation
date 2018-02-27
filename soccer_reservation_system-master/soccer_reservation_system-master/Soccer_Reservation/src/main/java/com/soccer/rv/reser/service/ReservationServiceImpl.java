@@ -115,7 +115,6 @@ public class ReservationServiceImpl implements ReservationService{
 		
 		String morning = dto.getField_morning();
 		String afternoon = dto.getField_afternoon();
-		String night = dto.getField_night();
 		
 		
 		String field_name = dtoa.getField_name();
@@ -158,9 +157,6 @@ public class ReservationServiceImpl implements ReservationService{
 			order.setField_n_etc(etc);
 			
 		}
-		System.out.println("m타임체크"+order.getField_m_time());
-		System.out.println("a타임체크"+order.getField_a_time());
-		System.out.println("n타임체크"+order.getField_n_time());
 
 		rvdao.rvinsert(order);
 		
@@ -235,26 +231,17 @@ public ModelAndView myreserdelete(HttpServletRequest request) {
 	String field_date = (String)request.getParameter("fielddate");
 	String field_m_time=(String)request.getParameter("fieldmornig");
 	String field_a_time=(String)request.getParameter("fieldafternoon");
-	String field_n_time=(String)request.getParameter("fieldnight");
 	String id = (String) request.getSession().getAttribute("id");
 	
 	FieldDto dto = rvdao.getData2(field_name);
 	String morning = dto.getField_morning();
 	String afternoon = dto.getField_afternoon();
-	String night = dto.getField_night();
-	System.out.println(dto.getField_morning());
-	System.out.println("비교할타임!"+morning);
-	System.out.println("비교할타임!"+afternoon);
-	System.out.println("비교할타임!"+night);
-	System.out.println("비교대상자!"+field_m_time);
-	System.out.println("비교대상자!"+field_a_time);
 	
 	ReservationOrderDto order = new ReservationOrderDto();
 	
 	order.setField_name(field_name);
 	order.setField_date(field_date);
 	if(field_m_time.equals(morning)){
-		System.out.println("여기들어왔다.");
 		order.setField_m_id(id);
 	}else if(field_a_time.equals(afternoon)){
 		order.setField_a_id(id);

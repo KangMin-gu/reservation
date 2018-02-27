@@ -9,7 +9,7 @@
 </head>
 <body>
 <script>
-alert("${id}님은 해당 권한이 없어 index페이지로 이동합니다.");
+alert("${id}님은 해당 권한이 없어 메인 페이지로 이동합니다.");
 location.href="${pageContext.request.contextPath}/";
 </script>>
 </body>

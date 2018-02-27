@@ -29,6 +29,7 @@
 		select * 
 		from field_order 
 		where field_m_id=#{id} or field_a_id=#{id} or field_n_id=#{id}
+		order by field_date desc
 </select>
 
 <select id="gettime" parameterType="String" resultType="fieldDto">

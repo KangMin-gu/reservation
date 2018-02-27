@@ -33,13 +33,21 @@
 	<div class="header container">
 	<!-- 세션에 id의 유무에따라 보여지는 loginView -->
 	<c:choose>
+		<c:when test="${id eq 'admin' }">
+			<div>
+				<ul id="loginUl">
+					<li class="loginLi"><a href="admin/adminpage.do">Admin Page</a></li>
+					<li class="loginLi"><a href="users/logout.do">Logout</a></li>
+				</ul>	
+			</div>		
+		</c:when>
 		<c:when test="${not empty id }">
 			<div>
 				<ul id="loginUl">
 					<li class="loginLi"><a href="users/info.do">My info</a></li>
 					<li class="loginLi"><a href="users/logout.do">Logout</a></li>
 				</ul>	
-			</div>			
+			</div>				
 		</c:when>
 		<c:otherwise>
 			<div>

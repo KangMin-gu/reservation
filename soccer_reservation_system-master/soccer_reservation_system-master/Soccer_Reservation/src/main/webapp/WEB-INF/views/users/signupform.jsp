@@ -84,92 +84,92 @@
 		</div>
 	</div>
 	
-		<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="divider col-sm-12 col-xs-12 col-md-12">
 				<div class="header-text">
-					 <span>회원가입</span>
-										<div class="container header-start text-center">
-						<div class="heading-icon">
-							<img src="https://png.icons8.com/material/96/000000/stadium.png">
-						</div>
-						<h1 class="main-text">회원가입</h1>
-						<p class="text-center sub-text">
-							<em class="first-line"></em>
-								<em class="next-line">
-								</em>
-						</p>
-					</div>	
+					 Sing<span>Up</span>
 				</div>
+				<div class="container header-start text-center">
+					<div class="heading-icon">
+						<img src="https://png.icons8.com/material/96/000000/stadium.png">
+					</div>
+				</div>	
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-2 col-md-8 text-center">
-				<div class="panel">
-					<div class="panel-body" style="background-color: #def0f1;">
 
-						<div class="text-center">
-							<form action="signup.do" method="post" id="myForm">
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;" for="id" >아이디</label>
-									<input type="text" name="id" id="id" style="width: 40%; margin-left: 0;"/>
-									<button class="btn btn-default" id="checkBtn">중복확인</button>
-									<span class="regExp"></span> 
-									<span id="checkResult"></span><br/>
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="pwd">비밀번호</label>
-									<input type="password" name="pwd" id="pwd"/>
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;" for="pwd2">비밀번호 확인</label>
+	<!-- ============본문============== -->
+    	<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
+           <div class="row">
+           		<div class="col-md-12 text-center" style="background-color: white;" >         
+					<form action="signup.do" method="post" id="myForm">
+						<div class="form-group" style="margin-left: 50px;">
+							<label for="id" >아이디</label>
+							<input type="text" name="id" id="id"/>
+							<button class="btn btn-default" id="checkBtn">중복확인</button></br>
+							<span class="regExp"></span> 
+							<span id="checkResult"></span><br/>
+						</div>
+						<div class="form-group">
+							<label for="pwd">비밀번호</label>
+							<input type="password" name="pwd" id="pwd"/>
+						</div>	
+						<div class="form-group">
+									<label for="pwd2">비밀번호 확인</label>
 									<input type="password" name="pwd2" id="pwd2" />
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;" for="findQuestion">비밀번호 찾기</br> 질문 선택</label>
+						</div>
+						<div class="form-group">
+							<p class="help-block">비밀번호를 찾으실때 필요한 질문과 답변 입니다.</p>
+									<label for="findQuestion">질문 선택</label>
 									<select name="findQuestion" id="findQuestion" class="">
 										<option value="나의 초등학교 이름은?">나의 초등학교 이름은?</option>
 										<option value="나의 중학교 이름은?">나의 중학교 이름은?</option>
 										<option value="나의 고등학교 이름은?">나의 고등학교 이름은?</option>
 										<option value="나의 대학교 이름은?">나의 대학교 이름은?</option>
-									</select>
-								</div>
-								
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: -100px;" for="findAnswer">비밀번호 찾기</br> 질문 답변</label>
-									<input type="text" name="findAnswer" id="findAnswer" />
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: -100px;"  for="name">이름</label>
-									<input type="text" name="name" id="name" />
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="email">이메일</label>
-									<input type="text" name="email" id="email" />
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="phone">전화번호</label>
-									<input type="text" name="phone" id="phone" />
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="addr">주소</label>
-									<input type="text" name="addr" id="addr" />
-								</div>
-								<div class="form-group">
-									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="detailaddr">상세주소</label>
-									<input type="text" name="detailaddr" id="detailaddr" style="margin-bottom: 20px" />
-								</div>
-								<button class="btn btn-default" type="submit" id="submit" style="margin-right:100px; float:right;">가입하기</button>
-							</form>
-							
+									</select>	
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+								
+						<div class="form-group">
+									<label for="findAnswer">질문 답변</label>
+									<input type="text" name="findAnswer" id="findAnswer" />
+						</div><br/>
+						<div class="form-group">
+									<label for="name">이름</label>
+									<input type="text" name="name" id="name" />
+						</div>
+						<div class="form-group">
+									<label for="email">이메일</label>
+									<input type="text" name="email" id="email" />
+						</div>
+						<div class="form-group">
+									<label for="phone">전화번호</label>
+									<input type="text" name="phone" id="phone" />
+						</div>
+						<div class="form-group" style="margin-right: 16%;">
+									<label for="addr">우편번호</label>
+									<input type="text" name="post" id="post" placeholder="우편번호" style="width: 30%;"/>
+									<a class="btn btn-default" href="javascript:void(0);" onclick="findPostbtn();">우편번호 찾기</a>
+									
+						</div>
+						<div class="form-group">
+									<label for="addr">주소</label>
+									<input type="text" name="addr" id="addr" placeholder="주소"/>
+						</div>
+						<div class="form-group">
+									<label for="detailaddr">상세주소</label>
+									<input type="text" name="detailaddr" id="detailaddr" placeholder="상세주소"/>
+						</div><br/>
+							<button class="btn btn-primary" type="submit" id="submit">가입하기</button>
+							<a class="btn btn-warning" href="${pageContext.request.contextPath}/">취소</a>
+						</form>
+					</div>		            
+                 </div>
+	        </div>
+	
+			
+<!-- ============FOOTER============= -->
+
 <footer id="footer">
 		<div class="footer-content container">
 			<div class="footer-adress text-center col-xs-12 col-sm-4 col-md-4">
@@ -216,16 +216,74 @@
 		src="${pageContext.request.contextPath}/resources/js/nav-hover.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-
+	<!-- 다음 주소 api -->
+	<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	
 <script>
-$(function(){
 
+ /* 다음주소찾기 api  */
+function findPostbtn() {
+    new daum.Postcode({
+    	
+        oncomplete: function(data) {     	       	
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var fullAddr = ''; // 최종 주소 변수
+            var extraAddr = ''; // 조합형 주소 변수
+
+            // 사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                fullAddr = data.roadAddress;
+
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                fullAddr = data.jibunAddress;
+            }
+
+            // 사용자가 선택한 주소가 도로명 타입일때 조합한다.
+            if(data.userSelectedType === 'R'){
+                //법정동명이 있을 경우 추가한다.
+                if(data.bname !== ''){
+                    extraAddr += data.bname;
+                }
+                // 건물명이 있을 경우 추가한다.
+                if(data.buildingName !== ''){
+                    extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('post').value = data.zonecode; //5자리 새우편번호 사용
+            document.getElementById('addr').value = fullAddr;
+
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById('detailaddr').focus();
+        },
+        
+    	theme: {
+    		bgColor: "#DEF0F1",
+    		searchBgColor: "#DEF0F1"
+    	}
+    	 	
+    }).open();
+}
+
+
+$(function(){
+	
 	var idValid=false;
 
 		
 	$("#checkBtn").click(function(){
-	
+		
 		var inputId=$("#id").val();
+		
+		if(inputId == ""){
+			alert("ID를 입력하고 중복확인 요청을 해주세요.");
+		}
 		
 		$.ajax({
 			url:"checkid.do", 
@@ -233,10 +291,10 @@ $(function(){
 			data: {"inputId":inputId},
 			success:function(data){  
 				if(data.canUse){
-					$("#checkResult").text("사용가능").css("color", "green");
+					$("#checkResult").text("입력하신 ID는 사용가능 합니다.").css("color", "green");
 					idValid = true;
 				}else{
-					$("#checkResult").text("사용불가").css("color", "red");
+					$("#checkResult").text("입력하신 ID는 사용 불가능 합니다.").css("color", "red");
 					idValid = false;
 				}
 			}
@@ -245,7 +303,7 @@ $(function(){
 	});
 	
 
- 	$("#myform").submit(function(){
+ 	$("#myForm").submit(function(){
 		if(idValid==false){
 			alert("아이디 중복 확인을 하세요.");
 			$("#id").focus();
@@ -264,7 +322,7 @@ $(function(){
 });
 	
 	
-	$("#myform").submit(function(){
+	$("#myForm").submit(function(){
 		
 		var regId=/^[a-zA-Z][a-zA-Z0-9]{4,9}$/; //아이디 
 		var regPwd=/^[^가-힝ㄱ-ㅎ]{5,10}$/; //비밀번호 
@@ -330,7 +388,10 @@ $(function(){
 
 	});
 	
-
+	
+	
+   
+	
 </script>
 </body>
 </html>

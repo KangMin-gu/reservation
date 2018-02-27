@@ -127,7 +127,7 @@ public class PlayListServiceImpl implements PlayListService {
 		
 		return mView;
 	}
-
+//운동장 주소를 좌표로 변환하여 저장하는 메소드
 	@Override
 	public void insert(PlayListDto dto) {
 		

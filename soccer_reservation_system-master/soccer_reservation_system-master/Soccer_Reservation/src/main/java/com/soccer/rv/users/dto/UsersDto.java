@@ -6,6 +6,7 @@ public class UsersDto {
 	private String pwd;
 	private String email;
 	private String phone;
+	private String post;
 	private String addr;
 	private String detailaddr;
 	private String findQuestion;
@@ -16,14 +17,15 @@ public class UsersDto {
 	
 	public UsersDto(){}
 
-	public UsersDto(String id, String name, String pwd, String email, String phone, String addr, String detailaddr,
-			String findQuestion, String findAnswer, String regdate, float lat, float lng) {
+	public UsersDto(String id, String name, String pwd, String email, String phone, String post, String addr,
+			String detailaddr, String findQuestion, String findAnswer, String regdate, float lat, float lng) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.pwd = pwd;
 		this.email = email;
 		this.phone = phone;
+		this.post = post;
 		this.addr = addr;
 		this.detailaddr = detailaddr;
 		this.findQuestion = findQuestion;
@@ -71,6 +73,14 @@ public class UsersDto {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getPost() {
+		return post;
+	}
+
+	public void setPost(String post) {
+		this.post = post;
 	}
 
 	public String getAddr() {
@@ -128,7 +138,6 @@ public class UsersDto {
 	public void setLng(float lng) {
 		this.lng = lng;
 	}
-	
-	
 
+	
 }

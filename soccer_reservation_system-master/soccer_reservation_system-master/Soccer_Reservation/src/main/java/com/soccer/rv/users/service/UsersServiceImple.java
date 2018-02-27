@@ -31,9 +31,6 @@ public class UsersServiceImple implements UsersService{
 	@Autowired
 	private UsersDao dao;
 	
-	@Autowired
-	private FieldDao fieldDao;
-	
 	
 	//회원가입
 	@Override

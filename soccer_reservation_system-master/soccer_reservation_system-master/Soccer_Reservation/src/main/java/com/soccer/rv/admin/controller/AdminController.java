@@ -16,6 +16,11 @@ public class AdminController {
 	@Autowired
 	private AdminService adminservice;
 	
+	@RequestMapping("/admin/adminpage")
+	public String adminpage(){
+		return "admin/adminpage";
+	}
+	
 	//회원 목록 요청 처리
 	@RequestMapping("/admin/adminlist")
 	public ModelAndView adminList(HttpServletRequest request){
@@ -56,7 +61,6 @@ public class AdminController {
 		mView.setViewName("admin/admindel_result");
 		return mView;
 	}
-	/*=====================================================*/
 	
 	//회원 예약 정보 확인 요청처리
 	@RequestMapping("/admin/adminrvlist")
@@ -72,6 +76,8 @@ public class AdminController {
 		mView.setViewName("admin/adminrvdel_result");
 		return mView;
 	}
+	
+	
 	
 	
 	
