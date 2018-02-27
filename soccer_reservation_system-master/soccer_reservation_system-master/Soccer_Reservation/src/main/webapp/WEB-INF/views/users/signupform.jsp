@@ -20,7 +20,7 @@
 	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
 <link href='http://fonts.googleapis.com/css?family=Poiret+One'rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/us-signupform.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/signupform.css" />
 
 
 </head>
@@ -102,72 +102,77 @@
 	<!-- ============본문============== -->
     	<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
            <div class="row">
-           		<div class="col-md-12 text-center" style="background-color: white;" >         
-					<form action="signup.do" method="post" id="myForm">
-						<div class="form-group" style="margin-left: 50px;">
-							<label for="id" >아이디</label>
-							<input type="text" name="id" id="id"/>
-							<button class="btn btn-default" id="checkBtn">중복확인</button></br>
-							<span class="regExp"></span> 
-							<span id="checkResult"></span><br/>
-						</div>
-						<div class="form-group">
-							<label for="pwd">비밀번호</label>
-							<input type="password" name="pwd" id="pwd"/>
-						</div>	
-						<div class="form-group">
-									<label for="pwd2">비밀번호 확인</label>
-									<input type="password" name="pwd2" id="pwd2" />
-						</div>
-						<div class="form-group">
-							<p class="help-block">비밀번호를 찾으실때 필요한 질문과 답변 입니다.</p>
-									<label for="findQuestion">질문 선택</label>
-									<select name="findQuestion" id="findQuestion" class="">
-										<option value="나의 초등학교 이름은?">나의 초등학교 이름은?</option>
-										<option value="나의 중학교 이름은?">나의 중학교 이름은?</option>
-										<option value="나의 고등학교 이름은?">나의 고등학교 이름은?</option>
-										<option value="나의 대학교 이름은?">나의 대학교 이름은?</option>
-									</select>	
-						</div>
+           		<div class="col-md-12 " style="background-color: white;" >         
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-6 col-lg-offset-3">
+								<form action="signup.do" method="post" id="myForm">
 								
-						<div class="form-group">
-									<label for="findAnswer">질문 답변</label>
-									<input type="text" name="findAnswer" id="findAnswer" />
-						</div><br/>
-						<div class="form-group">
-									<label for="name">이름</label>
-									<input type="text" name="name" id="name" />
-						</div>
-						<div class="form-group">
-									<label for="email">이메일</label>
-									<input type="text" name="email" id="email" />
-						</div>
-						<div class="form-group">
-									<label for="phone">전화번호</label>
-									<input type="text" name="phone" id="phone" />
-						</div>
-						<div class="form-group" style="margin-right: 16%;">
-									<label for="addr">우편번호</label>
-									<input type="text" name="post" id="post" placeholder="우편번호" style="width: 30%;"/>
-									<a class="btn btn-default" href="javascript:void(0);" onclick="findPostbtn();">우편번호 찾기</a>
+									<div id="checkid" class="form-group has-feedback" >
+										<label for="id" class="control-label" >아이디</label>
+										<input type="text" name="id" id="id" oninput="checkId()" class="form-control"/>
+										<span id="glyphicon"></span> 
+										<p class="help-block" id="checkResult"></p><br/>
+									</div>
 									
-						</div>
-						<div class="form-group">
-									<label for="addr">주소</label>
-									<input type="text" name="addr" id="addr" placeholder="주소"/>
-						</div>
-						<div class="form-group">
-									<label for="detailaddr">상세주소</label>
-									<input type="text" name="detailaddr" id="detailaddr" placeholder="상세주소"/>
-						</div><br/>
-							<button class="btn btn-primary" type="submit" id="submit">가입하기</button>
-							<a class="btn btn-warning" href="${pageContext.request.contextPath}/">취소</a>
-						</form>
+									<div class="form-group">
+										<label for="pwd">비밀번호</label>
+										<input type="password" name="pwd" id="pwd" class="form-control"/>
+									</div>	
+									<div class="form-group">
+												<label for="pwd2">비밀번호 확인</label>
+												<input type="password" name="pwd2" id="pwd2" class="form-control"/>
+									</div>
+									<div class="form-group">
+										<p class="help-block">비밀번호를 찾으실때 필요한 질문과 답변 입니다.</p>
+												<label for="findQuestion">질문 선택</label>
+												<select name="findQuestion" id="findQuestion" class="">
+													<option value="나의 초등학교 이름은?">나의 초등학교 이름은?</option>
+													<option value="나의 중학교 이름은?">나의 중학교 이름은?</option>
+													<option value="나의 고등학교 이름은?">나의 고등학교 이름은?</option>
+													<option value="나의 대학교 이름은?">나의 대학교 이름은?</option>
+												</select>	
+									</div>
+											
+									<div class="form-group">
+												<label for="findAnswer">질문 답변</label>
+												<input type="text" name="findAnswer" id="findAnswer" class="form-control"/>
+									</div><br/>
+									<div class="form-group">
+												<label for="name">이름</label>
+												<input type="text" name="name" id="name" class="form-control"/>
+									</div>
+									<div class="form-group">
+												<label for="email">이메일</label>
+												<input type="text" name="email" id="email" class="form-control" />
+									</div>
+									<div class="form-group">
+												<label for="phone">전화번호</label>
+												<input type="text" name="phone" id="phone" class="form-control"/>
+									</div>
+									<div class="form-group" style="margin-right: 16%;">
+												<label for="addr">우편번호</label>
+												<input type="text" name="post" id="post" placeholder="우편번호" style="width: 30%;" class="form-control"/>
+												<a class="btn btn-default" href="javascript:void(0);" onclick="findPostbtn();">우편번호 찾기</a>
+												
+									</div>
+									<div class="form-group">
+												<label for="addr">주소</label>
+												<input type="text" name="addr" id="addr" placeholder="주소" class="form-control"/>
+									</div>
+									<div class="form-group">
+												<label for="detailaddr">상세주소</label>
+												<input type="text" name="detailaddr" id="detailaddr" placeholder="상세주소" class="form-control"/>
+									</div><br/>
+										<button class="btn btn-primary" type="submit" id="submit" disabled="disabled">가입하기</button>
+										<a class="btn btn-warning" href="${pageContext.request.contextPath}/">취소</a>
+									</form>
 					</div>		            
                  </div>
 	        </div>
-	
-			
+	</div>
+		</div>
+		</div>	
 <!-- ============FOOTER============= -->
 
 <footer id="footer">
@@ -272,10 +277,42 @@ function findPostbtn() {
 }
 
 
-$(function(){
-	
+/* 실시간으로 id를 check하여 확인한다.  */
 	var idValid=false;
-
+	
+	function checkId(){
+		var inputId=$("#id").val();
+		console.log(inputId);
+		$.ajax({
+			url:"checkid.do", 
+			method:"GET",
+			data: {"inputId":inputId},
+			success:function(data){  
+				if(data.canUse){
+					$("#checkResult").text("입력하신 ID는 사용가능 합니다.").css("color", "green");
+					idValid = true;
+					$("#checkid").attr('class', 'has-success');
+					$("#glyphicon").addClass("glyphicon glyphicon-ok form-control-feedback");
+					$("#submit").attr('disabled', false);
+				}else{
+					$("#checkResult").text("입력하신 ID는 사용 불가능 합니다.").css("color", "red");
+					idValid = false;
+					$("#checkid").attr('class', 'has-error');
+					$("#glyphicon").addClass("glyphicon glyphicon-remove form-control-feedback");
+					$("#submit").attr('disabled', true);
+				}
+			}
+		});
+	}
+	
+	
+	$(function(){
+	
+	
+	
+	
+	/* var idValid=false;
+	
 		
 	$("#checkBtn").click(function(){
 		
@@ -300,18 +337,8 @@ $(function(){
 			}
 		});
 		return false; 
-	});
-	
+	}); */
 
- 	$("#myForm").submit(function(){
-		if(idValid==false){
-			alert("아이디 중복 확인을 하세요.");
-			$("#id").focus();
-			return false; 
-		}
-		
-	}); 
-	
 
 	$("#id").keydown(function(){
 		idValid=false;
@@ -336,6 +363,7 @@ $(function(){
 			return false;
 		}else if(regId.test($("#id").val())==false){
 			alert("아이디는 영문자로만 최소 5-10글자로 입력하세요.");
+			$("#id").val("");
 			$("#id").focus();
 			return false;
 		}else if($("#pwd").val() == ""){
@@ -344,10 +372,12 @@ $(function(){
 			return false;
 		}else if(regPwd.test($("#pwd").val())==false){	
 			alert("비밀번호는 6-10글자, 특수문자를 최소 하나 포함 해 주세요.");
+			$("#pwd").val("");
 			$("#pwd").focus();
 			return false;
 		}else if($("#pwd").val() != $("#pwd2").val()){
 			alert("비밀번호와 비밀번호 확인이 맞지 않습니다.");
+			$("#pwd").val("");
 			$("#pwd").focus();
 			return false;
 		}else if($("#findAnswer").val() == ""){

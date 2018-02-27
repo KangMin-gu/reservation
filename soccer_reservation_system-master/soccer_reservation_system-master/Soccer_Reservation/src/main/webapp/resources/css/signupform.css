@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+#loginUl{
+float:right;
+}
+
+.loginLi{
+	display:inline;
+	padding:10px;
+}

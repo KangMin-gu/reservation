@@ -96,29 +96,31 @@
 </div>
 
 <!-- ============본문============== -->
-    	<div class="container">
+    	<div class="container" style="margin-top: 50px; margin-bottom: 50px;">
            <div class="row">
-            	<div class="col-md-offset-2 col-md-8  text-center" >
-                  <div class="panel">
-                    <div class="panel-body">
-						<h3>${dto.field_name }의 예약 가능 시간을 조회하세요!</h3>	
+            	<div class="col-xs-12 text-center" style="background-color: white;" >
+						<h3><strong style="color: blue;">${dto.field_name }</strong>의 예약 가능 시간을 조회하세요!</h3>	
 						<p>운동장 주소: <strong>${dto.field_addr }</strong></p>
 						<form action="rv_form.do?num=${dto.num}" method="POST" id="reservationform" class="form-inline">
-							<input type="hidden" id="field_name" name="field_name" value="${dto.field_name }" /><br/>
-								<div id="datepicker" style="margin-left: 32%; margin-bottom:18px;"></div>
-									<input type="hidden" id="rv_date" name="rv_date"> 	
-									
-									
-								<div class="form-group">		
-									<select name="rv_time" id="rv_time" class="form-control" style="margin-left: 3%; width: 264px;">
+							<input type="hidden" id="field_name" name="field_name" value="${dto.field_name }" /><br/>																
+								
+								<div class="form-group" style="margin-right: 100px;">	
+									<div class="col-xs-6 col-xs-offset-3">
+									<div id="datepicker"></div>
+									<input type="hidden" id="rv_date" name="rv_date"> 
+									</div>			
+								</div><br/>
+								
+								<div class="form-group" style="margin-top:50px;">		
+									<select name="rv_time" id="rv_time" class="form-control">
 										<option>------시간 선택------</option>
 										<option id="morninga" value="${dto.field_morning}" disabled="disabled">오전 : ${dto.field_morning}</option>
 										<option id="afternoona" value="${dto.field_afternoon }" disabled="disabled">오후 : ${dto.field_afternoon }</option>
 										<option id="nighta" value="${dto.field_night }" disabled="disabled">저녁 : ${dto.field_night }</option>
 									</select>
-									
 								</div>	
-								<div id="allTime">
+								
+								<div id="allTime" style="padding-bottom: 30px; padding-top:50px;">
 									<p class="time" >오전 타임: <strong class="text-primary">${dto.field_morning }</strong></p>
 									<br/>
 									<p class="time" ><strong id="morning"></strong></p>
@@ -132,14 +134,13 @@
 									<p class="time"><strong id="night"></strong></p>
 									<br/>
 								</div>
-							<button class="btn btn-default" id="submit" type="submit">예약하기</button>
+							<button class="btn btn-primary" id="submit" type="submit" style="margin-bottom: 50px;">예약하기</button>
 						</form>
 		
                         </div>
                		 </div>
              	</div>
-             </div>
-		</div> 
+  
 
 <!-- ============FOOTER============= -->
 	<footer id="footer">
@@ -283,7 +284,7 @@ $(function() {
     	showOn: "both",
     	changeMonth: true,
     	changeYear: true,
-    	//minDate: 0,
+    	minDate: 0,
     	dayNames: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'],
         dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
         monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
