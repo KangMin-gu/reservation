@@ -63,9 +63,9 @@ public class UsersController {
 	
 	//로그아웃
 	@RequestMapping("/users/logout")
-	public ModelAndView logout(HttpSession session){
-		String id = (String)session.getAttribute("id");
-		session.invalidate();
+	public ModelAndView authlogout(HttpServletRequest request){
+		String id = (String)request.getSession().getAttribute("id");
+		request.getSession().invalidate();
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("id", id);
 		mView.setViewName("users/logout_result");
@@ -74,7 +74,7 @@ public class UsersController {
 	
 	//회원정보 보기
 	@RequestMapping("/users/info")
-	public ModelAndView info(HttpServletRequest request){
+	public ModelAndView authinfo(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		ModelAndView mView = service.detail(id);
@@ -84,7 +84,7 @@ public class UsersController {
 	
 	//회원정보 수정폼
 	@RequestMapping("/users/updateform")
-	public ModelAndView updateform(HttpServletRequest request){
+	public ModelAndView authupdateform(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		ModelAndView mView = service.detail(id);
@@ -103,7 +103,7 @@ public class UsersController {
 	
 	//회원 탈퇴
 	@RequestMapping("/users/delete")
-	public ModelAndView delete(HttpServletRequest request){
+	public ModelAndView authdelete(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		ModelAndView mView = service.delete(session);
 		mView.setViewName("users/delete_result");
@@ -113,7 +113,7 @@ public class UsersController {
 	//아이디 중복 확인
 	@RequestMapping("/users/checkid")
 	@ResponseBody
-	public Map<String, Object> ßcheckid(@RequestParam String inputId){
+	public Map<String, Object> checkid(@RequestParam String inputId){
 		boolean canUse = service.canUseId(inputId);
 		Map<String, Object> map = new HashMap<>();
 		map.put("canUse", canUse);

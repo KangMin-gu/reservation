@@ -25,7 +25,7 @@ public class ReservationController {
 	
 	//예약 현황 페이지로 이동
 	@RequestMapping("/reser/rv_detail")
-	public ModelAndView rvdetail(HttpServletRequest request, @RequestParam int num){
+	public ModelAndView authrvdetail(HttpServletRequest request, @RequestParam int num){
 		
 		ModelAndView mView = rvservice.detail(request);
 		mView.setViewName("reser/rv_detail");
@@ -61,7 +61,7 @@ public class ReservationController {
 	
 	//예약화면으로 이동
 	@RequestMapping("/reser/rv_form")
-	public ModelAndView rvform(HttpServletRequest request){ 
+	public ModelAndView authrvform(HttpServletRequest request){ 
 		
 		ModelAndView mView = rvservice.rvform(request);
 		mView.setViewName("reser/rv_form");
@@ -71,7 +71,7 @@ public class ReservationController {
 	
 	//예약하기 및 결과페이지로이동
 	@RequestMapping("/reser/rvinsert")
-	public ModelAndView rvinsert(@RequestParam int num ,@ModelAttribute RvinsertFormDto dtoa){
+	public ModelAndView authrvinsert(@RequestParam int num ,@ModelAttribute RvinsertFormDto dtoa){
 		ModelAndView mView = rvservice.rvinsert(num, dtoa);
 		mView.setViewName("/reser/rvinsert_result");
 		return mView;
@@ -79,7 +79,7 @@ public class ReservationController {
 	
 	//나의 예약정보 확인하기
 	@RequestMapping("/reser/myreser")
-	public ModelAndView myreser(HttpServletRequest request){
+	public ModelAndView authmyreser(HttpServletRequest request){
 		ModelAndView mView = rvservice.myreser(request);
 		mView.setViewName("reser/myreser");
 		return mView;
@@ -87,7 +87,7 @@ public class ReservationController {
 	
 	//유저예약취소하기
 	@RequestMapping("/reser/rvdelete")
-	public ModelAndView myreserdelete(HttpServletRequest request){
+	public ModelAndView authmyreserdelete(HttpServletRequest request){
 		rvservice.myreserdelete(request);
 		ModelAndView mView = new ModelAndView();
 		mView.setViewName("/reser/myreserdel_result");

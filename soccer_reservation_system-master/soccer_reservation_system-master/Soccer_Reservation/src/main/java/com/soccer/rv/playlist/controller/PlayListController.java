@@ -19,7 +19,7 @@ public class PlayListController {
 	PlayListService service;
 	
 	@RequestMapping("/playlist/playlist")
-	public ModelAndView authlist(HttpServletRequest request){
+	public ModelAndView list(HttpServletRequest request){
 		
 		ModelAndView mView=service.getList(request);
 		
@@ -37,14 +37,14 @@ public class PlayListController {
 
 	
 	@RequestMapping("/playlist/insertform")
-	public ModelAndView insertform(HttpServletRequest request){
+	public ModelAndView admininsertform(HttpServletRequest request){
 		 
 		return new ModelAndView("playlist/insertform");
 	}
 	
 
 	@RequestMapping("/playlist/insert")
-	public ModelAndView Insert(HttpServletRequest request,
+	public ModelAndView adminInsert(HttpServletRequest request,
 			@ModelAttribute PlayListDto dto	){
 		
 		service.insert(dto);
@@ -53,7 +53,7 @@ public class PlayListController {
 	}
 	
 	@RequestMapping("/playlist/delete")
-	public ModelAndView Delete(HttpServletRequest request){
+	public ModelAndView adminDelete(HttpServletRequest request){
 		
 		ModelAndView mView= new ModelAndView();
 		
@@ -66,7 +66,7 @@ public class PlayListController {
 	}
 	
 	@RequestMapping("/playlist/updateform")
-	public ModelAndView UpdateForm(HttpServletRequest request,
+	public ModelAndView adminUpdateForm(HttpServletRequest request,
 			@RequestParam int num){
 		
 		ModelAndView mView = service.getData(num);
