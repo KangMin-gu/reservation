@@ -1,8 +1,6 @@
 package com.soccer.rv.users.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.geocoder.Geocoder;
@@ -19,9 +16,6 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.LatLng;
-import com.soccer.rv.field.dao.FieldDao;
-import com.soccer.rv.field.dto.FieldDto;
-import com.soccer.rv.position.dto.PositionDto;
 import com.soccer.rv.users.dao.UsersDao;
 import com.soccer.rv.users.dto.UsersDto;
 
@@ -31,6 +25,8 @@ public class UsersServiceImple implements UsersService{
 	@Autowired
 	private UsersDao dao;
 	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	//회원가입
 	@Override
@@ -60,6 +56,10 @@ public class UsersServiceImple implements UsersService{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		//폼에서 password 를 꺼내와서 암호화를 한 후 hash에 담는다. 
+		 String hash = encoder.encode(dto.getPwd());
+		//dto에 다시 담는다.
+		 dto.setPwd(hash);
 		 
 		 dao.insert(dto);
 		 
@@ -67,19 +67,28 @@ public class UsersServiceImple implements UsersService{
 		
 		return mView;
 	}
+	
 	//id 사용가능유무
 	@Override
 	public boolean canUseId(String id) {
 		boolean canUse = dao.canUseId(id);
 		return canUse;
 	}
+	
 	//로그인 기능
 	@Override
 	public ModelAndView login(UsersDto dto, HttpServletRequest request) {
-		
+	//로그인폼 아이디를 가져와서 회원 정보를 가져온다.
 		UsersDto resultDto=dao.getData(dto.getId());
 		
-		boolean isValid = dao.isValid(dto);	
+		boolean isValid = false;
+		
+		if(resultDto != null){
+			boolean isMatch = encoder.matches(dto.getPwd(), resultDto.getPwd());
+			if(isMatch){
+				isValid = true;
+			}
+		}	
 		
 		String url = request.getParameter("url");
 		ModelAndView mView = new ModelAndView();
@@ -106,6 +115,10 @@ public class UsersServiceImple implements UsersService{
 	@Override
 	public ModelAndView update(UsersDto dto, HttpSession session) {
 		String id = (String)session.getAttribute("id");
+		//폼에서 password 를 꺼내와서 암호화를 한 후 hash에 담는다. 
+		String hash = encoder.encode(dto.getPwd());
+		//dto에 다시 담는다.
+		dto.setPwd(hash);
 		dao.update(dto);
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("id", id);

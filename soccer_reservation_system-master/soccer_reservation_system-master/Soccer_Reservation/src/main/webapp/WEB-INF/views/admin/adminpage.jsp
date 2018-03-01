@@ -97,22 +97,25 @@
     	<div class="container" style="margin-bottom: 50px;">
            <div class="row">
            		<div class="col-md-12 text-center" style="background-color: white;" >
-                 	<div class="row" style="height: 200px; margin-top:20px;">		
-						<div class="col-md-6">
-							<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/playlist/playlist.do">
-							<strong>운동장 등록</strong>
-							</a>
-						</div>
-						<div class="col-md-6">
-							<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/admin/adminlist.do">
-							<strong>회원 및 예약관리</strong>
-							</a>
-						</div>
-                 	</div>
-                 </div>
-	        </div>
-	     </div>
-			
+           			<div class="row">
+           				<div class="container">
+		                 	<div class="row" style="height: 200px; margin-top:20px;">		
+								<div class="col-md-6">
+									<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/playlist/playlist.do">
+									<strong>운동장 등록</strong>
+									</a>
+								</div>
+								<div class="col-md-6">
+									<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/admin/adminlist.do">
+									<strong>회원 및 예약관리</strong>
+									</a>
+								</div>
+		                 	</div>
+                		 </div>
+	        			</div>
+	     			</div>
+				</div>	
+			</div>		
 <!-- ============FOOTER============= -->
 	<footer id="footer">
 		<div class="footer-content container">

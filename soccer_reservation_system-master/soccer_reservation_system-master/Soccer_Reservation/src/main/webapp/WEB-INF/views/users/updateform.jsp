@@ -122,11 +122,11 @@
 								</div>
 								<div class="form-group">
 									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="pwd">비밀번호</label>
-									<input type="password" name="pwd" id="pwd" value="${dto.pwd }"/>
+									<input type="password" name="pwd" id="pwd"/>
 								</div>
 								<div class="form-group">
 									<label style="float:left; margin-top: 15px; margin-left: 70px;" for="pwd2">비밀번호 확인</label>
-									<input type="password" name="pwd2" id="pwd2" value="${dto.pwd }" />
+									<input type="password" name="pwd2" id="pwd2"/>
 								</div>
 								<div class="form-group">
 									<label style="float:left; margin-top: 15px; margin-left: 70px;"  for="email">이메일</label>

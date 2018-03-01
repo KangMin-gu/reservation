@@ -62,12 +62,10 @@
 	<context:component-scan base-package="com.soccer.rv.users.*"/>
 	<context:component-scan base-package="com.soccer.rv.review.*"/>
 	<context:component-scan base-package="com.soccer.rv.field.*"/>
-	<context:component-scan base-package="com.soccer.rv.position.*"/>
 	<context:component-scan base-package="com.soccer.rv.reser.*"/>
-	<context:component-scan base-package="com.soccer.rv.util"/>
 	<context:component-scan base-package="com.soccer.rv.admin.*"/>
 	<context:component-scan base-package="com.soccer.rv.aspect"/>
-	
+	<context:component-scan base-package="com.soccer.rv.util"/>
 	<!-- aop 설정하기-->
 	<aop:aspectj-autoproxy/>	<!-- autoproxy 하단에 aop 메소드 등 --> 
 

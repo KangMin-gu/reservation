@@ -104,7 +104,7 @@
 						<form action="rv_form.do?num=${dto.num}" method="POST" id="reservationform" class="form-inline">
 							<input type="hidden" id="field_name" name="field_name" value="${dto.field_name }" /><br/>																
 								
-								<div class="form-group" style="margin-right: 100px;">	
+								<div class="form-group" style="margin-right: ;">	
 									<div class="col-xs-6 col-xs-offset-3">
 									<div id="datepicker"></div>
 									<input type="hidden" id="rv_date" name="rv_date"> 

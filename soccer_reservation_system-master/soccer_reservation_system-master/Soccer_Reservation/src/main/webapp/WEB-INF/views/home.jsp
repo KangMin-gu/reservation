@@ -76,7 +76,7 @@
 			</button>
 		</div>
 		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav" style="margin: auto; float: none; text-align:center;">
 				<li class="selected"><a href="home.do">Home</a></li>
 				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">Ground</a></li>
 				<li><a href="${pageContext.request.contextPath}/reser/fieldlist.do">Near Ground</a></li>

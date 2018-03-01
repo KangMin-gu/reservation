@@ -91,8 +91,8 @@
 					 Sing<span>Up</span>
 				</div>
 				<div class="container header-start text-center">
-					<div class="heading-icon">
-						<img src="https://png.icons8.com/material/96/000000/stadium.png">
+					<div class="heading-icon" style="width: 17%;">
+						<img style="max-width:100%;" src="${pageContext.request.contextPath}/resources/img/user.png">
 					</div>
 				</div>	
 			</div>
@@ -105,24 +105,29 @@
            		<div class="col-md-12 " style="background-color: white;" >         
 					<div class="container">
 						<div class="row">
-							<div class="col-lg-6 col-lg-offset-3">
-								<form action="signup.do" method="post" id="myForm">
+							<div class="col-lg-6 col-lg-offset-3" >
+								<form action="signup.do" method="post" id="myForm" style="margin-top: 50px; margin-bottom:50px;" >
 								
 									<div id="checkid" class="form-group has-feedback" >
-										<label for="id" class="control-label" >아이디</label>
-										<input type="text" name="id" id="id" oninput="checkId()" class="form-control"/>
-										<span id="glyphicon"></span> 
-										<p class="help-block" id="checkResult"></p><br/>
+										<label for="id" class="control-label">아이디</label>
+										<input type="text" name="id" id="id" oninput="checkId()" placeholder="아이디" class="form-control"/>
+										<span id="glyphiconid" class="glyphicon form-control-feedback"></span> 
+										<p class="help-block" id="checkidResult"></p><br/>
+									</div>
+									<div id="checkpwd" class="form-group has-feedback" >
+										<label for="pwd" class="control-label">비밀번호</label>
+										<input type="password" name="pwd" id="pwd" oninput="checkPwd()" placeholder="비밀번호" class="form-control"/>
+										<span id="glyphiconpwd" class="glyphicon form-control-feedback"></span> 
+										<p class="help-block" id="checkpwdResult"></p><br/>
 									</div>
 									
-									<div class="form-group">
-										<label for="pwd">비밀번호</label>
-										<input type="password" name="pwd" id="pwd" class="form-control"/>
-									</div>	
-									<div class="form-group">
-												<label for="pwd2">비밀번호 확인</label>
-												<input type="password" name="pwd2" id="pwd2" class="form-control"/>
+									<div id="checkpwd2" class="form-group has-feedback" >
+										<label for="pwd2" class="control-label">비밀번호 확인</label>
+										<input type="password" name="pwd2" id="pwd2" oninput="checkPwd2()" placeholder="비밀번호 확인" class="form-control"/>
+										<span id="glyphiconpwd2" class="glyphicon form-control-feedback"></span> 
+										<p class="help-block" id="checkpwd2Result"></p><br/>
 									</div>
+									
 									<div class="form-group">
 										<p class="help-block">비밀번호를 찾으실때 필요한 질문과 답변 입니다.</p>
 												<label for="findQuestion">질문 선택</label>
@@ -132,40 +137,54 @@
 													<option value="나의 고등학교 이름은?">나의 고등학교 이름은?</option>
 													<option value="나의 대학교 이름은?">나의 대학교 이름은?</option>
 												</select>	
-									</div>
+									</div><br/>
 											
-									<div class="form-group">
-												<label for="findAnswer">질문 답변</label>
-												<input type="text" name="findAnswer" id="findAnswer" class="form-control"/>
+									<div id="checkfindAnswer" class="form-group">
+										<label for="findAnswer">질문 답변</label>
+										<input type="text" name="findAnswer" id="findAnswer" placeholder="비밀번호 찾기 답변" class="form-control"/>
 									</div><br/>
+									
 									<div class="form-group">
-												<label for="name">이름</label>
-												<input type="text" name="name" id="name" class="form-control"/>
+										<label for="name">이름</label>
+										<input type="text" name="name" id="name" placeholder="이름" class="form-control"/>
 									</div>
-									<div class="form-group">
-												<label for="email">이메일</label>
-												<input type="text" name="email" id="email" class="form-control" />
+									
+									<div id="checkemail" class="form-group has-feedback" >
+										<label for="email" class="control-label">이메일</label>
+										<input type="text" name="email" id="email" oninput="checkEmail()" placeholder="이메일" class="form-control"/>
+										<span id="glyphiconemail" class="glyphicon form-control-feedback"></span> 
+										<p class="help-block" id="checkemailResult"></p><br/>
 									</div>
-									<div class="form-group">
-												<label for="phone">전화번호</label>
-												<input type="text" name="phone" id="phone" class="form-control"/>
+									
+									<div id="checkphone" class="form-group has-feedback" >
+										<label for="phone" class="control-label">휴대전화</label>
+										<input type="text" name="phone" id="phone" oninput="checkPhone()" placeholder="휴대전화" class="form-control"/>
+										<span id="glyphiconphone" class="glyphicon form-control-feedback"></span> 
+										<p class="help-block" id="checkphoneResult"></p><br/>
 									</div>
-									<div class="form-group" style="margin-right: 16%;">
-												<label for="addr">우편번호</label>
-												<input type="text" name="post" id="post" placeholder="우편번호" style="width: 30%;" class="form-control"/>
-												<a class="btn btn-default" href="javascript:void(0);" onclick="findPostbtn();">우편번호 찾기</a>
-												
+										
+									<div class="form-inline form-group">
+										<p class="help-block">우편번호 찾기로 주소를 입력해주세요.</p>
+										<label for="addr">우편번호</label>																	
+										<input type="text" name="post" id="post" placeholder="우편번호" style="width: 30%;" class="form-control"/>	
+										<a class="btn btn-default" href="javascript:void(0);" onclick="findPostbtn();">우편번호 찾기</a>		
+														
 									</div>
-									<div class="form-group">
-												<label for="addr">주소</label>
-												<input type="text" name="addr" id="addr" placeholder="주소" class="form-control"/>
+									
+									<div id="checkaddr" class="form-group">
+										<label for="addr">주소</label>
+										<input type="text" name="addr" id="addr" placeholder="주소" class="form-control"/>
 									</div>
-									<div class="form-group">
-												<label for="detailaddr">상세주소</label>
-												<input type="text" name="detailaddr" id="detailaddr" placeholder="상세주소" class="form-control"/>
+									
+									<div id="checkdetailaddr" class="form-group">
+										<label for="detailaddr">상세주소</label>
+										<input type="text" name="detailaddr" id="detailaddr" placeholder="상세주소" class="form-control"/>
+										<span id="glyphicondetailaddr" class="glyphicon form-control-feedback"></span>
+										<p class="help-block" id="checkdetailaddr"></p>
 									</div><br/>
-										<button class="btn btn-primary" type="submit" id="submit" disabled="disabled">가입하기</button>
-										<a class="btn btn-warning" href="${pageContext.request.contextPath}/">취소</a>
+										<a class="btn btn-warning" style="float:right; margin-right:20px;" href="${pageContext.request.contextPath}/">취소</a>
+										<button class="btn btn-primary" style="float:right; margin-right:20px;" type="submit" id="submit" disabled="disabled">가입하기</button>
+				
 									</form>
 					</div>		            
                  </div>
@@ -275,109 +294,237 @@ function findPostbtn() {
     	 	
     }).open();
 }
+ 
+ 	
 
 
 /* 실시간으로 id를 check하여 확인한다.  */
 	var idValid=false;
-	
+
 	function checkId(){
-		var inputId=$("#id").val();
+		
+		var inputId=$("#id").val();	
+		var regId=/^[a-zA-Z][a-zA-Z0-9]{4,11}$/; //아이디 
+		
 		console.log(inputId);
+		if(inputId == ""){
+			$("#checkid").removeClass('has-error');
+			$("#checkid").removeClass('has-success');
+			$("#glyphiconid").removeClass("glyphicon-remove");
+			$("#glyphiconid").removeClass("glyphicon-ok");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			$("#checkidResult").text("").css('color', '');
+			return;
+		}else if(regId.test($("#id").val())==false){	
+			$("#checkidResult").text("아이디는 영문자로 시작하여 숫자포함 최소 5-12글자로 입력하세요.").css("color", "red");
+			$("#checkid").addClass('has-error');
+			$("#checkid").removeClass('has-success');
+			$("#glyphiconid").removeClass("glyphicon-ok");
+			$("#glyphiconid").addClass("glyphicon-remove");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			return ;
+			}
+		
 		$.ajax({
 			url:"checkid.do", 
 			method:"GET",
 			data: {"inputId":inputId},
 			success:function(data){  
+				
+				var regId=/^[a-zA-Z][a-zA-Z0-9]{4,9}$/; //아이디 
+				
 				if(data.canUse){
-					$("#checkResult").text("입력하신 ID는 사용가능 합니다.").css("color", "green");
+					$("#checkidResult").text("입력하신 ID는 사용가능 합니다.").css("color", "green");
 					idValid = true;
-					$("#checkid").attr('class', 'has-success');
-					$("#glyphicon").addClass("glyphicon glyphicon-ok form-control-feedback");
+					$("#checkid").addClass('has-success');
+					$("#checkid").removeClass('has-error');
+					$("#glyphiconid").addClass("glyphicon-ok");
+					$("#glyphiconid").removeClass("glyphicon-remove");
+					$("#id").addClass("form-control-success");
 					$("#submit").attr('disabled', false);
 				}else{
-					$("#checkResult").text("입력하신 ID는 사용 불가능 합니다.").css("color", "red");
+					$("#checkidResult").text("입력하신 ID는 사용 불가능 합니다.").css("color", "red");
 					idValid = false;
-					$("#checkid").attr('class', 'has-error');
-					$("#glyphicon").addClass("glyphicon glyphicon-remove form-control-feedback");
+					$("#checkid").addClass('has-error');
+					$("#checkid").removeClass('has-success');
+					$("#glyphiconid").addClass("glyphicon-remove");
+					$("#glyphiconid").removeClass("glyphicon-ok");
 					$("#submit").attr('disabled', true);
 				}
 			}
 		});
 	}
-	
-	
-	$(function(){
-	
-	
-	
-	
-	/* var idValid=false;
-	
+
+	/* 비밀번호체크 */
+	function checkPwd(){
 		
-	$("#checkBtn").click(function(){
+		var regPwd=/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,16}$/; //비밀번호 
+		var inputPwd = $("#pwd").val();
+		console.log(inputPwd);
 		
-		var inputId=$("#id").val();
-		
-		if(inputId == ""){
-			alert("ID를 입력하고 중복확인 요청을 해주세요.");
+		if($("#pwd").val() == ""){
+			$("#checkpwd").removeClass('has-error');
+			$("#checkpwd").removeClass('has-success');
+			$("#glyphiconpwd").removeClass("glyphicon-remove");
+			$("#glyphiconpwd").removeClass("glyphicon-ok");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			$("#checkpwdResult").text("").css('color', '');
+			return;
 		}
 		
-		$.ajax({
-			url:"checkid.do", 
-			method:"GET",
-			data: {"inputId":inputId},
-			success:function(data){  
-				if(data.canUse){
-					$("#checkResult").text("입력하신 ID는 사용가능 합니다.").css("color", "green");
-					idValid = true;
-				}else{
-					$("#checkResult").text("입력하신 ID는 사용 불가능 합니다.").css("color", "red");
-					idValid = false;
-				}
-			}
-		});
-		return false; 
-	}); */
-
-
-	$("#id").keydown(function(){
-		idValid=false;
-		$("#checkResult").text("");
-	});
-
+		if(regPwd.test($("#pwd").val()) == false){
+			$("#checkpwdResult").text("비밀번호는 8-16글자, 특수문자를 최소 하나 포함 해 주세요.").css("color", "red");
+			$("#checkpwd").addClass('has-error');
+			$("#checkpwd").removeClass('has-success');
+			$("#glyphiconpwd").removeClass("glyphicon-ok");
+			$("#glyphiconpwd").addClass("glyphicon-remove");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			return ;
+		}else{
+			$("#checkpwdResult").text("").css("color", "");
+			$("#checkpwd").removeClass('has-error');
+			$("#checkpwd").addClass('has-success');
+			$("#glyphiconpwd").removeClass("glyphicon-remove");
+			$("#glyphiconpwd").addClass("glyphicon-ok");
+			$("#submit").attr('disabled', false);
+			$("#submit").remove('disabled', true);
+			return ;
+		}
+			
+	}
 	
-});
+	//비밀번호 확인	
+	function checkPwd2(){
+		var inputPwd2 = $("#pwd2").val();
+		
+		if($("#pwd2").val() == ""){
+			$("#checkpwd2").removeClass('has-error');
+			$("#checkpwd2").removeClass('has-success');
+			$("#glyphiconpwd2").removeClass("glyphicon-remove");
+			$("#glyphiconpwd2").removeClass("glyphicon-ok");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			$("#checkpwd2Result").text("").css('color', '');
+			return;
+		}
+		
+		if($("#pwd2").val() != $("#pwd").val()){
+			$("#checkpwd2Result").text("비밀번호가 같지 않습니다.").css("color", "red");
+			$("#checkpwd2").addClass('has-error');
+			$("#checkpwd2").removeClass('has-success');
+			$("#glyphiconpwd2").removeClass("glyphicon-ok");
+			$("#glyphiconpwd2").addClass("glyphicon-remove");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			return ;
+		}else{
+			$("#checkpwd2Result").text("").css("color", "");
+			$("#checkpwd2").removeClass('has-error');
+			$("#checkpwd2").addClass('has-success');
+			$("#glyphiconpwd2").addClass("glyphicon-ok");
+			$("#glyphiconpwd2").removeClass("glyphicon-remove");
+			$("#submit").attr('disabled', false);
+			$("#submit").remove('disabled', true);
+			return ;
+		}
+		
+	}
 	
+	//이메일 유효성 검사
+	function checkEmail(){
+		var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i; //이메일유효성검사식 
+		var email = $("#email").val();
+		
+		if($("#email").val() == ""){
+			$("#checkemail").removeClass('has-error');
+			$("#checkemail").removeClass('has-success');
+			$("#glyphiconemail").removeClass("glyphicon-remove");
+			$("#glyphiconemail").removeClass("glyphicon-ok");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			$("#checkemailResult").text("").css('color', '');
+			return;
+		}
+		
+		if(regEmail.test($("#email").val()) == false){
+			$("#checkemailResult").text("이메일형식을 다시 한번 확인해 주세요.").css("color", "red");
+			$("#checkemail").addClass('has-error');
+			$("#checkemail").removeClass('has-success');
+			$("#glyphiconemail").removeClass("glyphicon-ok");
+			$("#glyphiconemail").addClass("glyphicon-remove");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			return ;
+		}else{
+			$("#checkemailResult").text("").css("color", "");
+			$("#checkemail").removeClass('has-error');
+			$("#checkemail").addClass('has-success');
+			$("#glyphiconemail").addClass("glyphicon-ok");
+			$("#glyphiconemail").removeClass("glyphicon-remove");
+			$("#submit").attr('disabled', false);
+			$("#submit").remove('disabled', true);
+			return ;
+		}
+		
+	}
+	
+	//휴대전화 유효성검사
+	function checkPhone(){
+		var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;	// 핸드폰번호 유효성 검사식
+		var phone = $("#phone").val();
+		
+		if($("#phone").val() == ""){
+			$("#checkphone").removeClass('has-error');
+			$("#checkphone").removeClass('has-success');
+			$("#glyphiconphone").removeClass("glyphicon-remove");
+			$("#glyphiconphone").removeClass("glyphicon-ok");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			$("#checkphoneResult").text("").css('color', '');
+			return;
+		}
+		
+		if(regPhone.test($("#phone").val()) == false){
+			$("#checkphoneResult").text("전화번호에 -를 빼고 숫자만 입력해주세요.").css("color", "red");
+			$("#checkphone").addClass('has-error');
+			$("#checkphone").removeClass('has-success');
+			$("#glyphiconphone").removeClass("glyphicon-ok");
+			$("#glyphiconphonel").addClass("glyphicon-remove");
+			$("#submit").attr('disabled', true);
+			$("#submit").remove('disabled', false);
+			return ;
+		}else{
+			$("#checkphoneResult").text("").css("color", "");
+			$("#checkphone").removeClass('has-error');
+			$("#checkphone").addClass('has-success');
+			$("#glyphiconphone").addClass("glyphicon-ok");
+			$("#glyphiconphone").removeClass("glyphicon-remove");
+			$("#submit").attr('disabled', false);
+			$("#submit").remove('disabled', true);
+			return ;
+		}
+	}
+	
+	// 빈공백 제출시 form전송 막기
 	
 	$("#myForm").submit(function(){
-		
-		var regId=/^[a-zA-Z][a-zA-Z0-9]{4,9}$/; //아이디 
-		var regPwd=/^[^가-힝ㄱ-ㅎ]{5,10}$/; //비밀번호 
-		var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i; //이메일유효성검사식 
+	
 		var regName=/^[가-힣]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;	// 이름 유효성 검사식
-		var regPhone = /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;	// 핸드폰번호 유효성 검사식
 		
 		if($("#id").val() == ""){
 			alert("아이디를 입력하세요.");
-			$("#id").focus();
-			return false;
-		}else if(regId.test($("#id").val())==false){
-			alert("아이디는 영문자로만 최소 5-10글자로 입력하세요.");
-			$("#id").val("");
 			$("#id").focus();
 			return false;
 		}else if($("#pwd").val() == ""){
 			alert("비밀번호를 입력하세요.");
 			$("#pwd").focus();
 			return false;
-		}else if(regPwd.test($("#pwd").val())==false){	
-			alert("비밀번호는 6-10글자, 특수문자를 최소 하나 포함 해 주세요.");
-			$("#pwd").val("");
-			$("#pwd").focus();
-			return false;
-		}else if($("#pwd").val() != $("#pwd2").val()){
-			alert("비밀번호와 비밀번호 확인이 맞지 않습니다.");
-			$("#pwd").val("");
+		}else if($("#pwd2").val() == ""){
+			alert("비밀번호를 확인 해주세요.");
 			$("#pwd").focus();
 			return false;
 		}else if($("#findAnswer").val() == ""){
@@ -395,27 +542,22 @@ function findPostbtn() {
 		}else if($("#email").val() == ""){
 			alert("이메일을 입력하세요.");
 			$("#email").focus();
-			return false;
-		}else if(regEmail.test($("#email").val())==false){
-			alert("이메일형식을 다시 한번 확인해 주세요.");
-			$("#email").focus();
-			return false;				
+			return false;			
 		}else if($("#phone").val() == ""){
 			alert("전화번호는 입력해주세요.");
 			$("#phone").focus();
-			return false;
-		}else if(regPhone.test($("#phone").val())==false){
-			alert("전화번호에 -를 빼고 숫자만 입력해주세요.");
-			$("#phone").focus();
 			return false;				
 		}else if($("#addr").val()==""){
-			alert("주소를 입력하세요.");
+			alert("우편번호찾기를 통해 주소를 입력하세요.");
 			$("#addr").focus();
+			return false;
+		}else if($("#detailaddr").val()==""){
+			alert("상세주소를 입력해 주세요.");
+			$("#detailaddr").focus();
 			return false;
 		}else{
 			return true;
 		}
-
 	});
 	
 	
