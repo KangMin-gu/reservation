@@ -75,6 +75,13 @@ public class UsersServiceImple implements UsersService{
 		return canUse;
 	}
 	
+	//email 사용 가능 유무 
+	 @Override
+	 public boolean canUseEmail(String email){
+		 boolean canUseEmail = dao.getEmail(email);
+		 return canUseEmail;
+	 }
+	
 	//로그인 기능
 	@Override
 	public ModelAndView login(UsersDto dto, HttpServletRequest request) {

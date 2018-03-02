@@ -48,4 +48,14 @@ public class UsersDaoImple implements UsersDao{
 		return session.selectOne("users.getData", id);
 	}
 
+	@Override
+	public boolean getEmail(String email) {
+		String result = session.selectOne("users.canUseEmail", email);
+		if(result == null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

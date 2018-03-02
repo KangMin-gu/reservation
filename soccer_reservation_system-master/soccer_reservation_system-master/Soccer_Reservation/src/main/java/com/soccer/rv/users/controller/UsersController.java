@@ -114,12 +114,23 @@ public class UsersController {
 	@RequestMapping("/users/checkid")
 	@ResponseBody
 	public Map<String, Object> checkid(@RequestParam String inputId){
+		System.out.println("id체쿠 "+inputId);
 		boolean canUse = service.canUseId(inputId);
 		Map<String, Object> map = new HashMap<>();
 		map.put("canUse", canUse);
 		return map;
 	}
 	
+	//email 중복확인
+	@RequestMapping("/users/checkemail")
+	@ResponseBody
+	public Map<String, Object> checkEmail(@RequestParam String inputEmail){
+		System.out.println("이멜체크"+inputEmail);
+		boolean canUseEmail = service.canUseEmail(inputEmail);
+		Map<String, Object> map = new HashMap<>();
+		map.put("canUseEmail", canUseEmail);
+		return map;
+	}
 //	//운동장주소와 나의 주소 위치 호출 구글맵 연동
 //	@RequestMapping("/users/fieldlist")
 //	public ModelAndView authfieldList(HttpServletRequest request){

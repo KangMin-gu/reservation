@@ -332,8 +332,7 @@ function findPostbtn() {
 			method:"GET",
 			data: {"inputId":inputId},
 			success:function(data){  
-				
-				var regId=/^[a-zA-Z][a-zA-Z0-9]{4,9}$/; //아이디 
+			console.log("ㅁ"+data);
 				
 				if(data.canUse){
 					$("#checkidResult").text("입력하신 ID는 사용가능 합니다.").css("color", "green");
@@ -437,7 +436,9 @@ function findPostbtn() {
 	//이메일 유효성 검사
 	function checkEmail(){
 		var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i; //이메일유효성검사식 
-		var email = $("#email").val();
+		var inputEmail = $("#email").val();
+		
+		console.log(inputEmail);
 		
 		if($("#email").val() == ""){
 			$("#checkemail").removeClass('has-error');
@@ -448,9 +449,7 @@ function findPostbtn() {
 			$("#submit").remove('disabled', false);
 			$("#checkemailResult").text("").css('color', '');
 			return;
-		}
-		
-		if(regEmail.test($("#email").val()) == false){
+		}else if(regEmail.test($("#email").val()) == false){
 			$("#checkemailResult").text("이메일형식을 다시 한번 확인해 주세요.").css("color", "red");
 			$("#checkemail").addClass('has-error');
 			$("#checkemail").removeClass('has-success');
@@ -458,17 +457,37 @@ function findPostbtn() {
 			$("#glyphiconemail").addClass("glyphicon-remove");
 			$("#submit").attr('disabled', true);
 			$("#submit").remove('disabled', false);
-			return ;
-		}else{
-			$("#checkemailResult").text("").css("color", "");
-			$("#checkemail").removeClass('has-error');
-			$("#checkemail").addClass('has-success');
-			$("#glyphiconemail").addClass("glyphicon-ok");
-			$("#glyphiconemail").removeClass("glyphicon-remove");
-			$("#submit").attr('disabled', false);
-			$("#submit").remove('disabled', true);
-			return ;
+			return ; 
 		}
+		
+		var idValid = true;
+		
+		$.ajax({
+			url:"checkemail.do", 
+			method:"GET",
+			data: {"inputEmail":inputEmail},
+			success:function(data){  
+				console.log("ㅇㅇ"+data);
+				if(data.canUseEmail){
+					$("#checkemailResult").text("입력하신 email은 사용가능 합니다.").css("color", "green");
+					idValid = true;
+					$("#checkemail").addClass('has-success');
+					$("#checkemail").removeClass('has-error');
+					$("#glyphiconemail").addClass("glyphicon-ok");
+					$("#glyphiconemail").removeClass("glyphicon-remove");
+					$("#email").addClass("form-control-success");
+					$("#submit").attr('disabled', false);
+				}else{
+					$("#checkemailResult").text("입력하신 email은 이미 등록 되어있습니다.").css("color", "red");
+					idValid = false;
+					$("#checkemail").addClass('has-error');
+					$("#checkemail").removeClass('has-success');
+					$("#glyphiconemail").addClass("glyphicon-remove");
+					$("#glyphiconemail").removeClass("glyphicon-ok");
+					$("#submit").attr('disabled', true);
+				}
+			}
+		});
 		
 	}
 	
@@ -558,6 +577,7 @@ function findPostbtn() {
 		}else{
 			return true;
 		}
+	
 	});
 	
 	

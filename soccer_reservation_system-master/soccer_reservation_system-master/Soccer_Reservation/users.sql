@@ -3,7 +3,7 @@ create table users
 (id varchar2(100) primary key, 
 name varchar2(100), 
 pwd varchar2(100), 
-email varchar2(200), 
+email unique varchar2(200), 
 phone varchar2(200), 
 post vatchar2(100),
 addr varchar2(200), 

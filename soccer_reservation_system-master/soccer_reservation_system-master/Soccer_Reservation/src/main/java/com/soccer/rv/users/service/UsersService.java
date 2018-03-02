@@ -17,6 +17,7 @@ public interface UsersService {
 	public ModelAndView update(UsersDto dto, HttpSession session);
 	public ModelAndView delete(HttpSession session);
 	public ModelAndView detail(String id);
+	public boolean canUseEmail(String email);
 //	public ModelAndView map(HttpServletRequest request);
 //	public List<PositionDto> fieldList();
 }

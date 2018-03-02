@@ -9,4 +9,5 @@ public interface UsersDao {
 	public void delete(String id);
 	public boolean canUseId(String id);
 	public UsersDto getMap(String id);
+	public boolean getEmail(String email);
 }
