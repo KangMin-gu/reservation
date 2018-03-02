@@ -14,7 +14,7 @@
 
 
 
-  <form class="form-signin" action="login.do" method="post">
+  <form class="form-signin " action="login.do" method="post">
       <input type="hidden" name="url" value="${url }"/>
       <div class="text-center mb-4">
       <div class="heading-icon">
@@ -26,7 +26,7 @@
 	 
       <div class="form-label-group">
         <input name="id" type="text" id="id" class="form-control" placeholder="아이디" required autofocus>
-        <label for="id">아이디</label>
+        <label for="id">아이디</label>	 	 
       </div>
 
       <div class="form-label-group">
@@ -40,6 +40,7 @@
         </label>
       </div>
       <button id="Btn"  class="btn btn-lg  btn-block" type="submit">Sign in</button>
+      <a style="margin-top: 10px; margin-left: 210px; float: left;" class="btn btn-warning" href="${pageContext.request.contextPath }/users/finduserform.do">아이디 및 비밀번호 찾기</a>
     </form>
 <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
 <script>

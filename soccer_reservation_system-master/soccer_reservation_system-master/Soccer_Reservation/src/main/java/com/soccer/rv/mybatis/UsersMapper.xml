@@ -31,4 +31,16 @@
 	select * from users where email=#{email}	
 </select>
 
+<select id="findid" parameterType="usersDto" resultType="usersDto">
+	select * from users where email=#{email} and name=#{name}
+</select>
+
+<select id="findpwd" parameterType="usersDto" resultType="usersDto">
+	select * from users where id=#{id} and email=#{email}
+</select>
+
+<update id="findpwd2" parameterType="usersDto">
+	update users set pwd=#{pwd} where id=#{id} and email=#{email}
+</update>
+
 </mapper>

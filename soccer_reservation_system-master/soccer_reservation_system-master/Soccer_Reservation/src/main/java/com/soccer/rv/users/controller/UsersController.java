@@ -131,6 +131,28 @@ public class UsersController {
 		map.put("canUseEmail", canUseEmail);
 		return map;
 	}
+	
+	//비밀번호 및 아이디 찾기폼으로 이동
+	@RequestMapping("/users/finduserform")
+	public String finduserform(){
+		return "users/finduserform";
+	}
+	
+	//아이디 찾기 
+	@RequestMapping("/users/findid")
+	public ModelAndView findid(@ModelAttribute UsersDto dto, HttpServletRequest request){
+		ModelAndView mView = service.findid(dto, request);
+		mView.setViewName("users/findid_result");
+		return mView;
+	}
+	
+	//비밀번호 찾기
+	@RequestMapping("/users/findpwd")
+	public ModelAndView findpwd(@ModelAttribute UsersDto dto, HttpServletRequest request){
+		ModelAndView mView = service.findpwd(dto, request);
+		mView.setViewName("users/findpwd_result");
+		return mView;
+	}
 //	//운동장주소와 나의 주소 위치 호출 구글맵 연동
 //	@RequestMapping("/users/fieldlist")
 //	public ModelAndView authfieldList(HttpServletRequest request){

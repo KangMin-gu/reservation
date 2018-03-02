@@ -151,7 +151,7 @@
 									
 									<div id="checkemail" class="form-group has-feedback" >
 										<label for="email" class="control-label">이메일</label>
-										<input type="text" name="email" id="email" oninput="checkEmail()" placeholder="이메일" class="form-control"/>
+										<input type="text" name="email" id="email" oninput="checkEmail()" placeholder="아이디" class="form-control"/>
 										<span id="glyphiconemail" class="glyphicon form-control-feedback"></span> 
 										<p class="help-block" id="checkemailResult"></p><br/>
 									</div>

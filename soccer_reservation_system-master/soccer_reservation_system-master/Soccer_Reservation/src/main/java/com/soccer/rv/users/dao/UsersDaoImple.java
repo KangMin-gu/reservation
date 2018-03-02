@@ -1,8 +1,11 @@
 package com.soccer.rv.users.dao;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.soccer.rv.users.dto.UsersDto;
 
@@ -56,6 +59,23 @@ public class UsersDaoImple implements UsersDao{
 		}else{
 			return false;
 		}
+	}
+
+	@Override
+	public UsersDto findid(UsersDto dto) {
+		UsersDto finddto = session.selectOne("users.findid", dto);
+		return finddto;
+	}
+
+	@Override
+	public UsersDto findpwd(UsersDto dto) {
+		UsersDto finddto = session.selectOne("users.findpwd", dto);
+		return finddto;
+	}
+
+	@Override
+	public void findpwd2(UsersDto dto) {
+		session.update("users.findpwd2", dto);
 	}
 
 }

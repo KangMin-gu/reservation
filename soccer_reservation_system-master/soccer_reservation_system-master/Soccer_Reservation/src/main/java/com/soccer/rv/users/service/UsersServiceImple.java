@@ -1,11 +1,16 @@
 package com.soccer.rv.users.service;
 
 import java.io.IOException;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,6 +32,9 @@ public class UsersServiceImple implements UsersService{
 	
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	@Autowired
+	private JavaMailSenderImpl mailSender;
 	
 	//회원가입
 	@Override
@@ -147,6 +155,125 @@ public class UsersServiceImple implements UsersService{
 		UsersDto dto = dao.getData(id);
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("dto", dto);
+		return mView;
+	}
+
+	//이메일 아이디 찾기 
+	@Override
+	public ModelAndView findid(UsersDto dto, HttpServletRequest request) {
+		ModelAndView mView = new ModelAndView();
+		UsersDto finddto = dao.findid(dto);
+		
+		boolean isValid = false;
+		
+		if(finddto != null){	
+			isValid = true;
+		}
+		
+		
+		if(isValid) {
+			String id = finddto.getId();
+			
+			//id 메일보내기 로직
+			final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+				
+				@Override
+				public void prepare(MimeMessage mimeMessage) throws Exception {
+					final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					helper.setFrom("Soccer_Reservation <mincu1028@gmail.com>");
+					helper.setTo(finddto.getEmail());
+					helper.setSubject(finddto.getName()+"님이 요청하신 아이디의 정보입니다.");
+					helper.setText(finddto.getName()+"님의 아이디는"+""+id+""+"입니다.");
+				}
+			};	
+			
+			mailSender.send(preparator);
+			String location = request.getContextPath()+"/users/loginform.do";
+			mView.addObject("location", location);
+			mView.addObject("msg", finddto.getName()+"님 메일에서 아이디를 확인해주세요.");	
+			
+		}else{	
+			
+			String location = request.getContextPath()+"/users/finduserform.do";
+			mView.addObject("location", location);
+			mView.addObject("msg", " 존재하지 않는 회원입니다. 이름이나 이메일을 확인 해주세요.");
+			
+		}
+			return mView;
+	}
+
+	@Override
+	public ModelAndView findpwd(UsersDto dto, HttpServletRequest request) {
+		ModelAndView mView = new ModelAndView();
+		UsersDto finddto = dao.findpwd(dto);
+		System.out.println(finddto.getPwd());
+		
+		boolean isValid = false;
+		
+		if(finddto != null){	
+			isValid = true;
+		}
+		
+		if(isValid){
+			
+			StringBuffer temp = new StringBuffer();
+			Random rnd = new Random();
+			for (int i = 0; i < 10; i++) {
+			    int rIndex = rnd.nextInt(3);
+			    switch (rIndex) {
+			    case 0:
+			        // a-z
+			        temp.append((char) ((int) (rnd.nextInt(26)) + 97));
+			        break;
+			    case 1:
+			        // A-Z
+			        temp.append((char) ((int) (rnd.nextInt(26)) + 65));
+			        break;
+			    case 2:
+			        // 0-9
+			        temp.append((rnd.nextInt(10)));
+			        break;
+			    }
+			}
+			
+			System.out.println(finddto.getEmail()+"aa");
+			String newpwd = temp.toString();
+			System.out.println(newpwd);
+			
+			//id 메일보내기 로직
+			final MimeMessagePreparator preparator = new MimeMessagePreparator() {
+				
+				@Override
+				public void prepare(MimeMessage mimeMessage) throws Exception {
+					final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
+					helper.setFrom("Soccer_Reservation <mincu1028@gmail.com>");
+					helper.setTo(finddto.getEmail());
+					helper.setSubject(finddto.getName()+"님이 요청하신 임시비밀번호 정보입니다.");
+					helper.setText(finddto.getName()+"님의 임시 비밀번호는"+""+newpwd+""+"입니다. 꼭 바로 변경해주세요.");
+				}
+			};	
+			
+			mailSender.send(preparator);
+			//폼에서 password 를 꺼내와서 암호화를 한 후 hash에 담는다. 
+			String hash = encoder.encode(newpwd);
+			//dto에 다시 담는다.
+			finddto.setPwd(hash);
+			
+			dao.findpwd2(finddto);
+			
+			String location = request.getContextPath()+"/users/updateform.do";
+			mView.addObject("location", location);
+			mView.addObject("msg", finddto.getName()+"님 메일에서 임시 비밀번호를 확인해주세요.");	
+			
+			
+		}else{
+			
+			String location = request.getContextPath()+"/users/finduserform.do";
+			mView.addObject("location", location);
+			mView.addObject("msg", " 입력하신 정보가 맞지 않습니다. 이름이나 이메일을 확인 해주세요.");
+			
+		}
+		
 		return mView;
 	}
 
