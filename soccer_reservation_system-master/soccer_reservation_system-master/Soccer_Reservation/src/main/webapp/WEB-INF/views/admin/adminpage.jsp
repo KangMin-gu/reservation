@@ -8,87 +8,15 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>Humanity</title>
-<meta name="generator" content="Bootply" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-<link href="${pageContext.request.contextPath}/resources/css/styles.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/demo.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/testimonial.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Poiret+One'
-	rel='stylesheet' type='text/css'>
-<!-- 현재 페이지에 적용할 style.css 파일을 여기에서 로딩한다 -->	
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/style/admininfo.css" />
+ <%@ include file="../include/header_script.jsp" %>
 </head>
 <body>
-	<div class="header container">
-	<!-- 세션에 id의 유무에따라 보여지는 loginView -->
-	<c:choose>
-		<c:when test="${not empty id }">
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/info.do">My info</a></li>
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/logout.do">Logout</a></li>
-				</ul>	
-			</div>			
-		</c:when>
-		<c:otherwise>
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="users/loginform.do">Login</a></li>
-					<li class="loginLi"><a href="users/signupform.do">SignUp</a></li>
-				</ul>
-			</div>	
-		</c:otherwise>
-	</c:choose>
-	
-		<div
-			class="visible-xs visible-sm col-xs-12 col-sm-12 text-center sm-logo">
-			<a rel="home" href="home.do"> <img src="${pageContext.request.contextPath}/resources/img/soccer.png" width="200" alt="logo">
-			</a>
-		</div>
-	</div>
-	<div class="navbar" role="navigation">
-
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="selected"><a href="${pageContext.request.contextPath}/home.do">Home</a></li>
-				<li><a href="myassist.do">Team</a></li>
-				<li><a href="${pageContext.request.contextPath}/users/fieldlist.do">Near Playground</a></li>
-				<li class="hidden-xs hidden-sm"><a rel="home" href="${pageContext.request.contextPath}/home.do"><img
-						class="logo"
-						src="${pageContext.request.contextPath}/resources/img/soccer.png"
-						width="200" alt="logo"></a></li>
-				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">playground List</a></li>
-				<li><a href="${pageContext.request.contextPath}/review/list.do">Review</a></li>
-				<li><a href="contact.html">Question</a></li>
-			</ul>
-		</div>
-	</div>
-<!-- ============TOP============= -->
+ <%@ include file="../include/header.jsp" %>
 <!-- ===========소제목============ -->
 <div class="container">
 	<div class="row">
 		<div class="divider col-sm-12 col-xs-12 col-md-12">
-			<div class="header-text"> <span>Admin Page</span></div>
+			<div class="header-text"> Admin<span>Menu</span></div>
 		</div>
 	</div>
 </div>
@@ -96,16 +24,16 @@
 <!-- ============본문============== -->
     	<div class="container" style="margin-bottom: 50px;">
            <div class="row">
-           		<div class="col-md-12 text-center" style="background-color: white;" >
+           		<div class="col-xs-12 text-center" style="background-color: white;" >
            			<div class="row">
            				<div class="container">
-		                 	<div class="row" style="height: 200px; margin-top:20px;">		
-								<div class="col-md-6">
-									<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/playlist/playlist.do">
+		                 	<div class="row" style="height: 80px; margin-top:20px;">		
+								<div class="col-xs-6">
+									<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/playlist/insertform.do">
 									<strong>운동장 등록</strong>
 									</a>
 								</div>
-								<div class="col-md-6">
+								<div class="col-xs-6">
 									<a class="btn btn-primary" style="width:300px;" href="${pageContext.request.contextPath}/admin/adminlist.do">
 									<strong>회원 및 예약관리</strong>
 									</a>
@@ -152,29 +80,9 @@
 		<div class="move-top-page"></div>
 	</footer>
 
-	<!-- script references -->
-	<script
-		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/js/nav-hover.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/jquery.bxslider.min.js"></script>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-
-	<!-- Place in the <head>, after the three links -->
-	<script>
-		$('.testimonials-slider').bxSlider({
-			slideWidth : 800,
-			minSlides : 1,
-			maxSlides : 1,
-			slideMargin : 32,
-			auto : true,
-			autoControls : true
-		});
-	</script>
+	
+ <%@ include file="../include/footer.jsp" %>
+  <%@ include file="../include/footer_script.jsp" %>
 	<script type="text/javascript">
 		
 	</script>

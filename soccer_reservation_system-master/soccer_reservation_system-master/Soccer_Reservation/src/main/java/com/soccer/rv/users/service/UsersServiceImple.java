@@ -206,18 +206,18 @@ public class UsersServiceImple implements UsersService{
 	public ModelAndView findpwd(UsersDto dto, HttpServletRequest request) {
 		ModelAndView mView = new ModelAndView();
 		UsersDto finddto = dao.findpwd(dto);
-		System.out.println(finddto.getPwd());
 		
 		boolean isValid = false;
-		
+		//finddto가 널이 아니면 참으로 바꾼다.
 		if(finddto != null){	
 			isValid = true;
 		}
-		
+		//널이아니면
 		if(isValid){
-			
+			//StringBuffer type의 temp에 랜덤 숫자와 문자열을 담는다.
 			StringBuffer temp = new StringBuffer();
 			Random rnd = new Random();
+			
 			for (int i = 0; i < 10; i++) {
 			    int rIndex = rnd.nextInt(3);
 			    switch (rIndex) {
@@ -234,13 +234,12 @@ public class UsersServiceImple implements UsersService{
 			        temp.append((rnd.nextInt(10)));
 			        break;
 			    }
-			}
+			}	
 			
-			System.out.println(finddto.getEmail()+"aa");
+			//String 타입으로 읽을수 있게 형변환한다.
 			String newpwd = temp.toString();
-			System.out.println(newpwd);
 			
-			//id 메일보내기 로직
+			//pwd 메일보내기 로직
 			final MimeMessagePreparator preparator = new MimeMessagePreparator() {
 				
 				@Override
@@ -254,13 +253,12 @@ public class UsersServiceImple implements UsersService{
 			};	
 			
 			mailSender.send(preparator);
-			//폼에서 password 를 꺼내와서 암호화를 한 후 hash에 담는다. 
+			// 발급받은 임시비밀번호를 암호화한다.
 			String hash = encoder.encode(newpwd);
-			//dto에 다시 담는다.
 			finddto.setPwd(hash);
-			
+			// 암호화된 임시비밀번호 업데이트하기
 			dao.findpwd2(finddto);
-			
+			//바로 비밀번호 수정가능하게 업데이트폼으로 이동하기 전에 임시비밀번호로 로그인하게 aop에 걸리게한다.
 			String location = request.getContextPath()+"/users/updateform.do";
 			mView.addObject("location", location);
 			mView.addObject("msg", finddto.getName()+"님 메일에서 임시 비밀번호를 확인해주세요.");	
@@ -270,7 +268,7 @@ public class UsersServiceImple implements UsersService{
 			
 			String location = request.getContextPath()+"/users/finduserform.do";
 			mView.addObject("location", location);
-			mView.addObject("msg", " 입력하신 정보가 맞지 않습니다. 이름이나 이메일을 확인 해주세요.");
+			mView.addObject("msg", " 입력하신 정보가 맞지 않습니다. 아이디 또는 이메일을 확인 해주세요.");
 			
 		}
 		

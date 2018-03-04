@@ -8,25 +8,7 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>Humanity</title>
-<meta name="generator" content="Bootply" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, maximum-scale=1">
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<!--[if lt IE 9]>
-			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-<link href="${pageContext.request.contextPath}/resources/css/styles.css"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/demo.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/testimonial.css" />
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css">
-<link href='http://fonts.googleapis.com/css?family=Poiret+One'
-	rel='stylesheet' type='text/css'>
+ <%@ include file="../include/header_script.jsp" %>
 <!-- 현재 페이지에 적용할 style.css 파일을 여기에서 로딩한다 -->	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/fieldlist.css" />
 <meta charset="UTF-8">
@@ -35,77 +17,24 @@
        #map {
         height: 400px;
         width: 100%;
-        
        }
     </style>
 </head>
 <body>
-	<div class="header container">
-	<!-- 세션에 id의 유무에따라 보여지는 loginView -->
-	<c:choose>
-		<c:when test="${not empty id }">
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/info.do">My info</a></li>
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/logout.do">Logout</a></li>
-				</ul>	
-			</div>			
-		</c:when>
-		<c:otherwise>
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/loginform.do">Login</a></li>
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/signupform.do">SignUp</a></li>
-				</ul>
-			</div>	
-		</c:otherwise>
-	</c:choose>
-	
-		<div
-			class="visible-xs visible-sm col-xs-12 col-sm-12 text-center sm-logo">
-			<a href="${pageContext.request.contextPath}/home.do"><img src="${pageContext.request.contextPath}/resources/img/soccer.png" width="200" alt="logo">
-			</a>
-		</div>
-	</div>
-	<div class="navbar" role="navigation">
+ <%@ include file="../include/header.jsp" %>
 
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="selected"><a href="${pageContext.request.contextPath}/home.do">Home</a></li>
-				<li><a href="myassist.do">Team</a></li>
-				<li><a href="${pageContext.request.contextPath}/users/fieldlist.do">Near Playground</a></li>
-				<li class="hidden-xs hidden-sm"><a rel="home" href="${pageContext.request.contextPath}/home.do"><img
-						class="logo"
-						src="${pageContext.request.contextPath}/resources/img/soccer.png"
-						width="200" alt="logo"></a></li>
-				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">playground List</a></li>
-				<li><a href="${pageContext.request.contextPath}/review/list.do">Review</a></li>
-				<li><a href="${pageContext.request.contextPath}/">Question</a></li>
-			</ul>
-		</div>
-	</div>
-<!-- ============TOP============= -->
-<!-- ===========소제목============ -->
 	<div class="container">
 		<div class="row">
 			<div class="divider col-sm-12 col-xs-12 col-md-12">
 				<div class="header-text">
 					Near<span>Ground</span>
 					<div class="container header-start text-center">
-						<div class="heading-icon">
+						<div class="heading-icon" style=" margin-top:0px;">
 							<img src="https://png.icons8.com/material/96/000000/stadium.png">
 						</div>
 						<h1 class="main-text">가까운 축구장을 찾아보세요!</h1>
 						<p class="text-center sub-text">
-							<em class="first-line"> 지도에서 여러분이 원하는 운동장을 찾고 바로 예약하세요! </em>
+							<em class="first-line"> 가입시 등록한 주소 중심으로 가까운 운동장을 찾아보세요! </em>
 								<em class="next-line">
 								</em>
 						</p>
@@ -115,10 +44,7 @@
 			</div>
 		</div>
 	</div>
-<!-- ===========소제목============ -->
-<!-- ============본문============== -->
 
-	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12 text-center">
@@ -131,7 +57,7 @@
 				</div>
 				<div class="text-center">
 		           <ul class="list-unstyled list-inline list-social-sq-primary">
-		           <li><a class="btn btn-default" href="${pageContext.request.contextPath}/playlist/playlist.do">동네별 축구장 검색하기</a></li>
+		           <li><a class="btn btn-default" href="${pageContext.request.contextPath}/playlist/playlist.do">축구장 전체 목록</a></li>
 		           </ul>
 	            </div>
 			</div>
@@ -139,42 +65,7 @@
 	</div>
 	
 
-
-<!-- ============FOOTER============= -->
-	<footer id="footer">
-		<div class="footer-content container">
-			<div class="footer-adress text-center col-xs-12 col-sm-4 col-md-4">
-				<h4>Great love for humanity</h4>
-				<ul class="footer-menus">
-					<li>Home /</li>
-					<li>About</li>
-					<br/>
-					<li>Service /</li>
-					<li>Gallery /</li>
-					<li>Contact</li>
-				</ul>
-			</div>
-			<div class="footer-second col-xs-12 col-sm-4 col-md-4">
-				<div class="social-block text-center">
-					<div class="social-share">
-						<i class="fa fa-2x fa-facebook"></i> <i
-							class="fa fa-2x  fa-twitter"></i> <i
-							class="fa fa-2x  fa-google-plus"></i> <i
-							class="fa fa-2x  fa-instagram"></i>
-					</div>
-				</div>
-				<p class="text-center footer-text1">123 456 7890</p>
-				<p class="text-center footer-text">humanity@shuvohabib.com</p>
-			</div>
-			<div class="footer-third col-xs-12 col-sm-4 col-md-4">
-				<div class="copyright">
-					<span>Copyright 2014 Theme</span><br> <span>All Rights
-						Reserved</span>
-				</div>
-			</div>
-		</div>
-		<div class="move-top-page"></div>
-	</footer>
+ <%@ include file="../include/footer.jsp" %>
 
 	<!-- script references -->
 	<script

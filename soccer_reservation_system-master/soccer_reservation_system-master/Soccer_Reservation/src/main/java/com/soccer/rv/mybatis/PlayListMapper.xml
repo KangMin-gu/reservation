@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="playlist">
 	<sql id="playlistColumns">
-		num, field_name, field_addr, field_morning, field_afternoon, field_night
+		num, field_name, field_addr, field_morning, field_afternoon, field_night, orgFileName, saveFileName, fileSize, lat, lng
 	</sql>
 	
-	<select id="getList" resultType="playDto">
+	<select id="getList" resultType="fieldDto">
 		SELECT *
 		FROM (SELECT result1.*,ROWNUM rnum
 		FROM (SELECT
-		<include refid="playlistColumns" />
+		 num, field_name, field_addr, field_morning, field_afternoon, field_night, orgFileName, saveFileName, fileSize, lat, lng
 		FROM field
 		<where>
 			<if test="field_name != null">
@@ -27,7 +27,7 @@
 		
 	</select>
 	
-	<select id="getCount" parameterType="playDto" resultType="int">
+	<select id="getCount" parameterType="fieldDto" resultType="int">
 				SELECT NVL(MAX(ROWNUM), 0)
 		FROM field
 		<where>
@@ -41,11 +41,11 @@
 		</where>
 	</select>
 
-	<select id="getData" parameterType="playDto" resultType="playDto">
+	<select id="getData" parameterType="fieldDto" resultType="fieldDto">
 		SELECT result1.*
 		FROM
 		( SELECT
-		<include refid="playlistColumns" />
+		num, field_name, field_addr, field_morning, field_afternoon, field_night, orgFileName, saveFileName, fileSize, lat, lng
 		,
 		LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum,
 		LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum
@@ -63,10 +63,10 @@
 		WHERE num=#{num}
 	</select>
 	
-	<insert id="insert" parameterType="playDto">
+	<insert id="insert" parameterType="fieldDto">
 		INSERT INTO field 
-		(num, field_name, field_addr, field_morning, field_afternoon, field_night, lat, lng)
-		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night}, #{lat}, #{lng})
+		(num, field_name, field_addr, field_morning, field_afternoon, field_night, orgFileName, saveFileName, fileSize, lat, lng)
+		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night},#{orgFileName},#{saveFileName},#{fileSize},#{lat}, #{lng})
 		
 	</insert>
 	
@@ -75,13 +75,13 @@
 		WHERE num=#{num}
 	</delete>
 	
-	<update id="update" parameterType="playDto">
+	<update id="update" parameterType="fieldDto">
 		UPDATE field
 		set field_name=#{field_name}, field_addr=#{field_addr}
 		WHERE num=#{num}
 	</update>
 	
-	<select id="getData2" parameterType="int" resultType="playDto">
+	<select id="getData2" parameterType="int" resultType="fieldDto">
 		SELECT * FROM field WHERE num=#{num}
 	 </select>
 </mapper>

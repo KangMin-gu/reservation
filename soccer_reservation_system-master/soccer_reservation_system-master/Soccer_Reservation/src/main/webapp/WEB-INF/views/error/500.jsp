@@ -8,7 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p> 서버 오류로 인해 메인페이지로 이동 합니다. </p>
-<a href="${pageContext.request.contextPath}/">main</a>
+<script>
+alert("서버 오류로 인해 메인페이지로 이동합니다.");
+location.href="${pageContext.request.contextPath}/";
+</script>
 </body>
 </html>

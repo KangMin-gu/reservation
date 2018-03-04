@@ -20,7 +20,7 @@
       <div class="heading-icon">
         
       </div>
-       <img src="${pageContext.request.contextPath }/resources/img/icons8-soccer-96.png">
+       <a href="${pageContext.request.contextPath }/"><img src="${pageContext.request.contextPath }/resources/img/icons8-soccer-96.png"></a>
         <h1 class="main-text text-center">Login</h1>
       </div>
 	 
@@ -40,9 +40,12 @@
         </label>
       </div>
       <button id="Btn"  class="btn btn-lg  btn-block" type="submit">Sign in</button>
-      <a style="margin-top: 10px; margin-left: 210px; float: left;" class="btn btn-warning" href="${pageContext.request.contextPath }/users/finduserform.do">아이디 및 비밀번호 찾기</a>
+      <a style="margin-top: 20px; margin-left:5px; float:right;" class="btn btn-warning pull-right" href="${pageContext.request.contextPath }/">취소</a>
+      <a style="margin-top: 20px; float:right;" class="btn btn-warning pull-left" href="${pageContext.request.contextPath }/users/finduserform.do">아이디 및 비밀번호 찾기</a>
     </form>
-<script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
+    
+    <script src="${pageContext.request.contextPath }/resources/js/jquery-3.2.1.js"></script>
+
 <script>
 	
 	

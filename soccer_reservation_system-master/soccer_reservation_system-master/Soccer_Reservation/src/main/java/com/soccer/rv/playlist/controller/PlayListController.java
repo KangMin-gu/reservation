@@ -1,5 +1,8 @@
 package com.soccer.rv.playlist.controller;
 
+import java.io.File;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.soccer.rv.playlist.dto.PlayListDto;
+import com.soccer.rv.field.dto.FieldDto;
 import com.soccer.rv.playlist.service.PlayListService;
 
 @Controller
@@ -20,9 +23,9 @@ public class PlayListController {
 	
 	@RequestMapping("/playlist/playlist")
 	public ModelAndView list(HttpServletRequest request){
-		
 		ModelAndView mView=service.getList(request);
-		
+		//파일을 저장할 폴더의 절대 경로를 얻어온다.	
+
 		mView.setViewName("playlist/playlist");
 		return mView;
 	}
@@ -38,16 +41,16 @@ public class PlayListController {
 	
 	@RequestMapping("/playlist/insertform")
 	public ModelAndView admininsertform(HttpServletRequest request){
-		 
+		
 		return new ModelAndView("playlist/insertform");
 	}
 	
 
 	@RequestMapping("/playlist/insert")
 	public ModelAndView adminInsert(HttpServletRequest request,
-			@ModelAttribute PlayListDto dto	){
-		
-		service.insert(dto);
+			@ModelAttribute FieldDto dto){
+		System.out.println("asdfa"+dto.getFile());
+		service.insert(request, dto);
 		
 		return new ModelAndView("redirect:/playlist/playlist.do");
 	}
@@ -79,7 +82,7 @@ public class PlayListController {
 	}
 	
 	@RequestMapping("/playlist/update")
-	public ModelAndView Update( @ModelAttribute PlayListDto dto){
+	public ModelAndView adminUpdate( @ModelAttribute FieldDto dto){
 		ModelAndView mView= service.update(dto);
 		mView.addObject("num",dto.getNum());
 		mView.setViewName("playlist/alert");

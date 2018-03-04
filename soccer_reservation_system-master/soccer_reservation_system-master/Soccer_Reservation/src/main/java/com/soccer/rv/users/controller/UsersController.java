@@ -153,6 +153,11 @@ public class UsersController {
 		mView.setViewName("users/findpwd_result");
 		return mView;
 	}
+	
+	@RequestMapping("/users/technology")
+	public String technology(){
+		return "users/technology";
+	}
 //	//운동장주소와 나의 주소 위치 호출 구글맵 연동
 //	@RequestMapping("/users/fieldlist")
 //	public ModelAndView authfieldList(HttpServletRequest request){

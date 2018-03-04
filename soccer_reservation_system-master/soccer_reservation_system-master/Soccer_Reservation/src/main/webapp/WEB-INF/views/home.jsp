@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Humanity</title>
+<title>Soccer_Reservation</title>
 <meta name="generator" content="Bootply" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -30,66 +30,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/my.css" />
 </head>
 <body>
-	<div class="header container">
-	<!-- 세션에 id의 유무에따라 보여지는 loginView -->
-	<c:choose>
-		<c:when test="${id eq 'admin' }">
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="admin/adminpage.do">Admin Page</a></li>
-					<li class="loginLi"><a href="users/logout.do">Logout</a></li>
-				</ul>	
-			</div>		
-		</c:when>
-		<c:when test="${not empty id }">
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="users/info.do">My info</a></li>
-					<li class="loginLi"><a href="users/logout.do">Logout</a></li>
-				</ul>	
-			</div>				
-		</c:when>
-		<c:otherwise>
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="users/loginform.do">Login</a></li>
-					<li class="loginLi"><a href="users/signupform.do">SignUp</a></li>
-				</ul>
-			</div>	
-		</c:otherwise>
-	</c:choose>
-	
-		<div
-			class="visible-xs visible-sm col-xs-12 col-sm-12 text-center sm-logo">
-			<a rel="home" href="home.do"> <img src="${pageContext.request.contextPath}/resources/img/soccer.png" width="200" alt="logo">
-			</a>
-		</div>
-	</div>
-	<div class="navbar" role="navigation">
-
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav" style="margin: auto; float: none; text-align:center;">
-				<li class="selected"><a href="home.do">Home</a></li>
-				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">Ground</a></li>
-				<li><a href="${pageContext.request.contextPath}/reser/fieldlist.do">Near Ground</a></li>
-				<li class="hidden-xs hidden-sm"><a rel="home" href="home.do"><img
-						class="logo"
-						src="${pageContext.request.contextPath}/resources/img/soccer.png"
-						width="200" alt="logo"></a></li>
-				<li><a href="${pageContext.request.contextPath}/shop/shop.do">shop</a></li>
-				<li><a href="${pageContext.request.contextPath}/review/list.do">Review</a></li>
-				<li><a href="${pageContext.request.contextPath}/">Cart</a></li>
-			</ul>
-		</div>
-	</div>
+ <%@ include file="include/header.jsp" %>
 
 		
 <div class="fotorama" data-loop="true" data-arrows="true" data-autoplay="true" data-height="750" data-fit="cover">
@@ -114,7 +55,7 @@
 		<div class="heading-icon">
 			<img src="${pageContext.request.contextPath}/resources/images/soccerfield.png" alt="" />
 		</div>
-		<h1 class="main-text">언제, 어디든지 원하는 곳의 축구장을 이용하세요!</h1>
+		<h1 class="main-text">언제, 어디든지 원하는 곳의 축구장을 예약하세요!</h1>
 		<p class="text-center sub-text">
 			<em class="first-line">이제는 무료로 운동장을 예약하여 넓은 필드를 동료들과 함께 누려보세요!</em></p>
 	</div>
@@ -128,129 +69,55 @@
    <section class="blog">
       <div class="item col-md-4">
          <div class="blok-read-sm">
-         <!-- single1.html 사진을 누르면 너어갈 경로 -->
-            <a href="review/detail.do" class="hover-image"> <img
-               src="${pageContext.request.contextPath}/resources/img/sea1.jpg"
-               alt="image"> <span class="layer-block"></span>
+            <a href="review/detail.do" class="hover-image"> <img src="${pageContext.request.contextPath}/resources/img/sea1.jpg" alt="image">
+            <span class="layer-block"></span>
             </a>
             <div class="editor-choice">
                <i class="fa fa-star"></i> <a href="#">Editor’s Choice</a>
             </div>
-            
-            <c:forEach var="review" items="${list}" varStatus="status">
-            <c:if test="${status.count eq 3 }">
-               <h4>${review.title }</h4>
-               <p>${review.content }</p>
-            </c:if>
-            </c:forEach>
-
-
             <div class="content-block">
                <span class="point-caption bg-blue-point"></span> <span
                   class="bottom-line bg-blue-point"></span>
                <div class="button-main bg-fio-point">read more</div>
-               <div class="like-wrap">
-                  <a href="#"><i class="fa fa-heart col-red"></i></a><span>224</span>
-                  <a href="#"><i class="fa fa-comment col-green"></i></a><span>89</span>
-               </div>
             </div>
          </div>
       </div>
       
       <div class="item col-md-4">
          <div class="blok-read-sm">
-            <a href="single1.html" class="hover-image"> <img
-               src="${pageContext.request.contextPath}/resources/img/sea2.jpg"
-               alt="image"> <span class="layer-block"></span>
+            <a href="single1.html" class="hover-image"> <img src="${pageContext.request.contextPath}/resources/img/sea2.jpg" alt="image"> 
+            <span class="layer-block"></span>
             </a>
             <div class="editor-choice">
                <i class="fa fa-star"></i> <a href="#">Editor’s Choice</a>
-            </div>
-                        <c:forEach var="review" items="${list}" varStatus="status">
-            <c:if test="${status.count eq 2 }">
-               <h4>${review.title }</h4>
-               <p>${review.content }</p>
-            </c:if>
-            </c:forEach>
-            
+            </div>                           
             <div class="content-block">
                <span class="point-caption bg-blue-point"></span> <span
                   class="bottom-line bg-blue-point"></span>
                <div class="button-main bg-fio-point">read more</div>
-               <div class="like-wrap">
-                  <a href="#"><i class="fa fa-heart col-red"></i></a><span>224</span>
-                  <a href="#"><i class="fa fa-comment col-green"></i></a><span>89</span>
-               </div>
             </div>
          </div>
       </div>
 
       <div class="item col-md-4">
          <div class="blok-read-sm">
-            <a href="detail.do?num=${tmp.num }&condition=${condition}&keyword=${keyword}" class="hover-image"> <img
-               src="${pageContext.request.contextPath}/resources/img/sea3.jpg"
-               alt="image"> <span class="layer-block"></span>
-            </a>
+            <a href="#" class="hover-image"> <img style="max-width:100%;" src="${pageContext.request.contextPath}/resources/img/sea3.jpg" alt="image"> 
+            <span class="layer-block"></span>
+            </a>            
             <div class="editor-choice">
                <i class="fa fa-star"></i> <a href="#">Editor’s Choice</a>
-            </div>
-            <c:forEach var="review" items="${list}" varStatus="status">
-            <c:if test="${status.count eq 1 }">
-               <h4>${review.title }</h4>
-               <p>${review.content }</p>
-            </c:if>
-            </c:forEach>
+            </div>                 
             <div class="content-block">
                <span class="point-caption bg-blue-point"></span> <span
                   class="bottom-line bg-blue-point"></span>
                <div class="button-main bg-fio-point">read more</div>
-               <div class="like-wrap">
-                  <a href="#"><i class="fa fa-heart col-red"></i></a><span></span>
-                  <a href="#"><i class="fa fa-comment col-green"></i></a><span>89</span>
-               </div>
             </div>
          </div>
       </div>
    </section>
 
-
-
-	<!-- ============FOOTER============= -->
-	<footer id="footer">
-		<div class="footer-content container">
-			<div class="footer-adress text-center col-xs-12 col-sm-4 col-md-4">
-				<h4>Great love for humanity</h4>
-				<ul class="footer-menus">
-					<li>Home /</li>
-					<li>About</li>
-					<br/>
-					<li>Service /</li>
-					<li>Gallery /</li>
-					<li>Contact</li>
-				</ul>
-			</div>
-			<div class="footer-second col-xs-12 col-sm-4 col-md-4">
-				<div class="social-block text-center">
-					<div class="social-share">
-						<i class="fa fa-2x fa-facebook"></i> <i
-							class="fa fa-2x  fa-twitter"></i> <i
-							class="fa fa-2x  fa-google-plus"></i> <i
-							class="fa fa-2x  fa-instagram"></i>
-					</div>
-				</div>
-				<p class="text-center footer-text1">123 456 7890</p>
-				<p class="text-center footer-text">humanity@shuvohabib.com</p>
-			</div>
-			<div class="footer-third col-xs-12 col-sm-4 col-md-4">
-				<div class="copyright">
-					<span>Copyright 2014 Theme</span><br> <span>All Rights
-						Reserved</span>
-				</div>
-			</div>
-		</div>
-		<div class="move-top-page"></div>
-	</footer>
-
+ <%@ include file="include/footer.jsp" %>
+ 
 	<!-- script references -->
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
@@ -264,18 +131,5 @@
 		src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/fotorama.js"></script>
 	<!-- Place in the <head>, after the three links -->
-	<script>
-		$('.testimonials-slider').bxSlider({
-			slideWidth : 800,
-			minSlides : 1,
-			maxSlides : 1,
-			slideMargin : 32,
-			auto : true,
-			autoControls : true
-		});
-	</script>
-	<script type="text/javascript">
-		
-	</script>
 </body>
 </html>

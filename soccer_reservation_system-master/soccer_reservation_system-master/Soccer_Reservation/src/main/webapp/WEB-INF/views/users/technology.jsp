@@ -5,12 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Soccer_Reservation</title>
+<title>Insert title here</title>
 </head>
 <body>
-<script>
-alert("페이지 경로 오류로 인해 메인페이지로 이동합니다.");
-location.href="${pageContext.request.contextPath}/";
-</script>
+<p>사용기술페이지 입니다.</p>
 </body>
 </html>

@@ -32,6 +32,7 @@ public class Adminaspect {
 					String url = null;
 					if(query == null){
 						url = request.getRequestURI();
+						
 					} else {
 						url = request.getRequestURI() + "?" + query;
 					}

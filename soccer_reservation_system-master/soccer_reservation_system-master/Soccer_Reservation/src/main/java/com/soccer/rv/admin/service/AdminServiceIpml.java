@@ -31,7 +31,6 @@ public class AdminServiceIpml implements AdminService{
 		//회원 목록 불러오기
 		
 		List<UsersDto> list = adminDao.getList();
-		System.out.println(list);
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("list",list);
 		System.out.println(list+"admin list 입니다.");
@@ -43,9 +42,7 @@ public class AdminServiceIpml implements AdminService{
 	@Override
 	public ModelAndView getData(String id) {
 		
-		System.out.println(id+"= service id 값");
 		UsersDto dto = adminDao.getData(id);
-		
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("dto",dto);
 		return mView;
@@ -81,9 +78,10 @@ public class AdminServiceIpml implements AdminService{
 	//회원 예약정보 확인 및 기간 초과시취소불가 기능
 	@Override
 	public ModelAndView rvList(HttpServletRequest request) {
-		String id = (String)request.getParameter("id");
-		List<ReservationOrderDto> list =adminDao.rvList(id);	
+		String userid = (String)request.getParameter("userid");
+		List<ReservationOrderDto> list =adminDao.rvList(userid);	
 		List<ReservationOrderDto> olist = new ArrayList<>();
+		
 		for (ReservationOrderDto tmp : list) {
 			
 			String rvDate = tmp.getField_date();
@@ -133,8 +131,9 @@ public class AdminServiceIpml implements AdminService{
 		}
 
 		ModelAndView mView = new ModelAndView();
+		mView.addObject("userid", userid);
 		mView.addObject("list",olist);
-		mView.addObject("id", id);
+		
 		return mView;
 	}
 
@@ -143,7 +142,7 @@ public class AdminServiceIpml implements AdminService{
 	@Override
 	public ModelAndView rvDelete(HttpServletRequest request) {
 		String field_name = (String)request.getParameter("fieldname");
-		String field_date = (String)	request.getParameter("fielddate");
+		String field_date = (String)request.getParameter("fielddate");
 		String field_m_time = (String)request.getParameter("fieldmornig");
 		String field_a_time = (String)request.getParameter("fieldafternoon");
 		String field_n_time = (String)request.getParameter("fieldnight");

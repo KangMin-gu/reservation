@@ -4,14 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.ModelAndView;
 
-
-import com.soccer.rv.playlist.dto.PlayListDto;
+import com.soccer.rv.field.dto.FieldDto;
 
 public interface PlayListService {
-	public void insert(PlayListDto dto);
+	public void insert(HttpServletRequest request, FieldDto dto);
 	public ModelAndView getList(HttpServletRequest request);
 	public ModelAndView detail(HttpServletRequest request);
 	public void delete(HttpServletRequest request);
-	public ModelAndView update(PlayListDto dto);
+	public ModelAndView update(FieldDto dto);
 	public ModelAndView getData(int num);
 }

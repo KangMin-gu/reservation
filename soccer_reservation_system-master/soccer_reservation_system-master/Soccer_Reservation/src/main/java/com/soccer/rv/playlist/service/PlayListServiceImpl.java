@@ -1,12 +1,18 @@
 package com.soccer.rv.playlist.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.code.geocoder.Geocoder;
@@ -15,8 +21,8 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.LatLng;
+import com.soccer.rv.field.dto.FieldDto;
 import com.soccer.rv.playlist.dao.PlayListDao;
-import com.soccer.rv.playlist.dto.PlayListDto;
 
 
 
@@ -39,8 +45,8 @@ public class PlayListServiceImpl implements PlayListService {
 		
 		ModelAndView mView= new ModelAndView();
 		
-		PlayListDto dto = new PlayListDto();
-		
+		FieldDto dto = new FieldDto();
+	
 		if(keyword != null){
 			if(condition.equals("field_name")){
 				dto.setField_name(keyword);
@@ -81,8 +87,8 @@ public class PlayListServiceImpl implements PlayListService {
 				dto.setEndRowNum(endRowNum);
 				
 				//1. 글목록을 불러온다.
-				List<PlayListDto> list=dao.getList(dto);
-				
+				List<FieldDto> list=dao.getList(dto);
+				System.out.println("저장이름"+dto.getSaveFileName());
 				mView.addObject("list", list);
 				mView.addObject("id", id);
 				mView.addObject("pageNum", pageNum);
@@ -103,7 +109,7 @@ public class PlayListServiceImpl implements PlayListService {
 		//검색 조건을 알려주기 위한 메시지
 		String msg= null;
 		
-		PlayListDto dto = new PlayListDto();
+		FieldDto dto = new FieldDto();
 		if(keyword != null){
 			System.out.println("검색들어옴");
 			if(condition.equals("field_name")){
@@ -122,15 +128,47 @@ public class PlayListServiceImpl implements PlayListService {
 		int num=Integer.parseInt(request.getParameter("num"));
 		dto.setNum(num);
 		
-		PlayListDto resultDto=dao.getData(dto);
+		FieldDto resultDto=dao.getData(dto);
 		mView.addObject("dto", resultDto);
 		
 		return mView;
 	}
 //운동장 주소를 좌표로 변환하여 저장하는 메소드
 	@Override
-	public void insert(PlayListDto dto) {
+	public void insert(HttpServletRequest request, FieldDto dto) {
+		//파일업로드로직
+		//파일을 저장할 폴더의 절대 경로를 얻어온다.
+		String realPath=request.getSession()
+				.getServletContext().getRealPath("/upload");
+		//MultipartFile 객체의 참조값 얻어오기
+		MultipartFile mFile=dto.getFile();
+		//원본 파일명
+		String orgFileName=mFile.getOriginalFilename();
+		//파일 사이즈
+		long fileSize=mFile.getSize();
 		
+		String filePath=realPath+File.separator;
+		
+		File file=new File(filePath);
+		if(!file.exists()){//디렉토리가 존재하지 않는다면
+			file.mkdir();//디렉토리를 만든다.
+		}
+		//파일 시스템에 저장할 파일명을 만든다. (겹치치 않게)
+		String saveFileName=System.currentTimeMillis()+orgFileName;
+		
+		try{
+			//upload 폴더에 파일을 저장한다.
+			mFile.transferTo(new File(filePath+saveFileName));
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+		//FileDto 객체에 추가 정보를 담는다.
+		dto.setOrgFileName(orgFileName);
+		dto.setSaveFileName(saveFileName);
+		dto.setFileSize(fileSize);
+		
+		//운동장좌표변환로직
 		String location = dto.getField_addr();
 		
 		Geocoder geocoder = new Geocoder(); 
@@ -154,7 +192,7 @@ public class PlayListServiceImpl implements PlayListService {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		 
+		
 		dao.insert(dto);
 	}
 
@@ -166,7 +204,7 @@ public class PlayListServiceImpl implements PlayListService {
 	}
 
 	@Override
-	public ModelAndView update(PlayListDto dto) {
+	public ModelAndView update(FieldDto dto) {
 		
 		dao.update(dto);
 
@@ -178,7 +216,7 @@ public class PlayListServiceImpl implements PlayListService {
 
 	@Override
 	public ModelAndView getData(int num) {
-		PlayListDto dto = dao.getData(num);
+		FieldDto dto = dao.getData(num);
 		
 		ModelAndView mView= new ModelAndView();
 		

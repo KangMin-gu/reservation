@@ -24,77 +24,19 @@
 
 </head>
 <body>
-<div class="header container">
-	<!-- 세션에 id의 유무에따라 보여지는 loginView -->
-	<c:choose>
-		<c:when test="${not empty id }">
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/info.do">My info</a></li>
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/logout.do">Logout</a></li>
-				</ul>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div>
-				<ul id="loginUl">
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/loginform.do">Login</a></li>
-					<li class="loginLi"><a href="${pageContext.request.contextPath}/users/signupform.do">SignUp</a></li>
-				</ul>
-			</div>
-		</c:otherwise>
-	</c:choose>
-
-	<div
-		class="visible-xs visible-sm col-xs-12 col-sm-12 text-center sm-logo">
-		<a rel="home" href="home.do"> <img
-			src="${pageContext.request.contextPath}/resources/img/soccer.png"
-			width="200" alt="logo">
-		</a>
-	</div>
-</div>
-<div class="navbar" role="navigation">
-
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse"
-			data-target=".navbar-collapse">
-			<span class="sr-only">Toggle navigation</span> <span
-				class="icon-bar"></span> <span class="icon-bar"></span> <span
-				class="icon-bar"></span>
-		</button>
-	</div>
-	<div class="collapse navbar-collapse">
-		<ul class="nav navbar-nav">
-			<li class="selected"><a
-				href="${pageContext.request.contextPath}/home.do">Home</a></li>
-			<li><a href="myassist.do">Team</a></li>
-			<li><a
-				href="${pageContext.request.contextPath}/users/fieldlist.do">Near
-					Playground</a></li>
-			<li class="hidden-xs hidden-sm"><a rel="home"
-				href="${pageContext.request.contextPath}/home.do"><img
-					class="logo"
-					src="${pageContext.request.contextPath}/resources/img/soccer.png"
-					width="200" alt="logo"></a></li>
-			<li><a href="playlist.do">playground List</a></li>
-			<li><a href="${pageContext.request.contextPath}/review/list.do">Review</a></li>
-			<li><a href="contact.html">Question</a></li>
-		</ul>
-	</div>
-</div>
+ <%@ include file="../include/header.jsp" %>
 
 <div class="container">
 	<div class="row">
 		<div class="divider col-sm-12 col-xs-12 col-md-12">
 			<div class="header-text">
-				My <span>운동장 예약하기</span>
+				Field <span>Reservation</span>
 									<div class="container header-start text-center">
-					<div class="heading-icon">
+					<div class="heading-icon" style="margin-top:50px;">
 						<img src="https://png.icons8.com/material/96/000000/stadium.png">
 					</div>
-					<h1 class="main-text">예약폼</h1>
 					<p class="text-center sub-text">
-						<em class="first-line"></em>
+						<em class="first-line">예약정보를 추가로 입력해주세요!</em>
 							<em class="next-line">
 							</em>
 					</p>
@@ -103,11 +45,12 @@
 		</div>
 	</div>
 </div>
-	<div class="container">
+
+<div class="container">
 		<div class="row">
 			<div class="col-md-offset-2 col-md-8 text-center">
-				<div class="panel">
-					<div class="panel-body" style="background-color: #def0f1;">
+				<div  class="panel">
+					<div  class="panel-body" style="background-color: #def0f1; ">
 
 									
 						<div class="text-center">
@@ -136,13 +79,13 @@
 								</div>
 								<div class="form-group">
 									<label style="float:left; margin-top: 15px; margin-left: 70px;" for="team">예약팀명</label>
-									<input type="text" id="team" name="team" />
+									<input type="text" id="team" name="team" placeholder="이용하시는 팀이름을 적어주세요."/>
 								</div>
 								<div class="form-group">
 									<label style="float:left; margin-top: 15px; margin-left: 70px;" for="phone">예약자 전화번호</label>
 									<input type="text" id="phone" name="phone" value="${phone }"/>
 								</div>
-								<div class="form-group">
+								<div class="form-group" style="margin-left:170px;">
 									<label style="float:left; margin-top: 15px; margin-left: -100px; margin-bottom: 20px;" 
 									for="teamNP">예약팀인원수</label>
 									<select name="teamNP" id="teamNP">
@@ -164,7 +107,7 @@
 									<label style="float:left; margin-top: 15px;   margin-left: -100px;" for="etc">기타입력사항</label>
 									<textarea rows="5" cols="50" id="etc" name="etc"></textarea>
 								</div>
-									<button class="btn btn-default" id="submit" type="submit">예약하기</button>
+									<button style="margin-top: 10px;" class="btn btn-primary" id="submit" type="submit">예약하기</button>
 								</form>
 							</div>					
 						</div>
@@ -174,59 +117,10 @@
 		</div>
 
 
-<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.js"></script>
-
-<footer id="footer">
-		<div class="footer-content container">
-			<div class="footer-adress text-center col-xs-12 col-sm-4 col-md-4">
-				<h4>Great love for humanity</h4>
-				<ul class="footer-menus">
-					<li>Home /</li>
-					<li>About</li>
-					<br />
-					<li>Service /</li>
-					<li>Gallery /</li>
-					<li>Contact</li>
-				</ul>
-			</div>
-			<div class="footer-second col-xs-12 col-sm-4 col-md-4">
-				<div class="social-block text-center">
-					<div class="social-share">
-						<i class="fa fa-2x fa-facebook"></i> <i
-							class="fa fa-2x  fa-twitter"></i> <i
-							class="fa fa-2x  fa-google-plus"></i> <i
-							class="fa fa-2x  fa-instagram"></i>
-					</div>
-				</div>
-				<p class="text-center footer-text1">123 456 7890</p>
-				<p class="text-center footer-text">humanity@shuvohabib.com</p>
-			</div>
-			<div class="footer-third col-xs-12 col-sm-4 col-md-4">
-				<div class="copyright">
-					<span>Copyright 2014 Theme</span><br> <span>All Rights
-						Reserved</span>
-				</div>
-			</div>
-		</div>
-		<div class="move-top-page"></div>
-	</footer>
-
-<script
-	src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-		<script
-	src="${pageContext.request.contextPath}/resources/js/bootstrap.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/nav-hover.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 
-
-
-
-
+ <%@ include file="../include/footer.jsp" %>
+ <%@ include file="../include/footer_script.jsp" %>
 
 <script type="text/javascript">
 

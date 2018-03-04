@@ -18,7 +18,6 @@ public class AdminDaoImpl implements AdminDao{
 
 	@Override
 	public UsersDto getData(String id) {
-		System.out.println(id+"=dao id 값");
 		return session.selectOne("admin.getData",id);
 	}
 
@@ -46,8 +45,8 @@ public class AdminDaoImpl implements AdminDao{
 	/*=========================*/
 	//reservation 예약정보
 	@Override
-	public List<ReservationOrderDto> rvList(String id) {
-		List<ReservationOrderDto> list = session.selectList("admin.rvList",id);
+	public List<ReservationOrderDto> rvList(String userid) {
+		List<ReservationOrderDto> list = session.selectList("admin.rvList",userid);
 		return list;
 	}
 
