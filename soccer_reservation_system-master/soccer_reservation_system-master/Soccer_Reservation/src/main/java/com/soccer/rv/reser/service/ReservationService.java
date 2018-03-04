@@ -20,7 +20,7 @@ public interface ReservationService {
 	public ReservationOrderDto getData(HttpServletRequest request);
 	public ModelAndView detail(HttpServletRequest request);
 	public ModelAndView rvform(HttpServletRequest request);
-	public ModelAndView rvinsert(int num, RvinsertFormDto dto);
+	public ModelAndView rvinsert(HttpServletRequest request, int num, RvinsertFormDto dto);
 	public ModelAndView myreser(HttpServletRequest request);
 	public ModelAndView myreserdelete(HttpServletRequest request);
 	public ModelAndView userLocation(HttpServletRequest request);

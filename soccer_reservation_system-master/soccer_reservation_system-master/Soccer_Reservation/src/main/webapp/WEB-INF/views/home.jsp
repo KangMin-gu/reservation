@@ -62,7 +62,7 @@
 
    <div class="divider col-sm-12 col-xs-12 col-md-12">
       <div class="header-text">
-         <span>Review</span> News
+         <span>Many</span> Reservation places
       </div>
    </div>
 

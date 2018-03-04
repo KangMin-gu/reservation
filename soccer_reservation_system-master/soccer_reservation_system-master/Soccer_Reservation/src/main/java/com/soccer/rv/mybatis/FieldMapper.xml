@@ -6,5 +6,11 @@
 <select id="getList" resultType="fieldDto">
 	select * from field 
 </select>
-	 
+
+<update id="addCount" parameterType="int">
+	UPDATE field
+	SET viewcount=viewcount+1
+	WHERE num=#{countNum}
+</update>
+
 </mapper>

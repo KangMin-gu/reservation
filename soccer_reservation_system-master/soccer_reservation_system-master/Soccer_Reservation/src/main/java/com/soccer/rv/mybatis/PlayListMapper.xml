@@ -65,8 +65,8 @@
 	
 	<insert id="insert" parameterType="fieldDto">
 		INSERT INTO field 
-		(num, field_name, field_addr, field_morning, field_afternoon, field_night, orgFileName, saveFileName, fileSize, lat, lng)
-		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night},#{orgFileName},#{saveFileName},#{fileSize},#{lat}, #{lng})
+		(num, field_name, field_addr, field_morning, field_afternoon, field_night, orgFileName, saveFileName, viewCount, fileSize, lat, lng)
+		VALUES(field_seq.NEXTVAL, #{field_name}, #{field_addr}, #{field_morning}, #{field_afternoon}, #{field_night},#{orgFileName},#{saveFileName}, 0 ,#{fileSize},#{lat}, #{lng})
 		
 	</insert>
 	
@@ -77,7 +77,7 @@
 	
 	<update id="update" parameterType="fieldDto">
 		UPDATE field
-		set field_name=#{field_name}, field_addr=#{field_addr}
+		set field_name=#{field_name}, field_addr=#{field_addr}, field_morning=#{field_morning}, field_afternoon=#{field_afternoon}, field_night=#{field_night}
 		WHERE num=#{num}
 	</update>
 	

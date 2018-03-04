@@ -20,4 +20,10 @@ public class FieldDaoImpl implements FieldDao{
 		return list;
 	}
 
+	@Override
+	public void increasereser(int countNum) {
+			System.out.println("count"+countNum);
+			session.update("field.addCount" , countNum);
+	}
+
 }

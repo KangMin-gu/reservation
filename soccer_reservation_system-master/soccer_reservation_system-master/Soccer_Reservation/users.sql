@@ -26,6 +26,8 @@ field_morning varchar2(200) not null,
 field_afternoon varchar2(200) not null,
 field_night varchar2(200) not null,
 saveFileName varchar2(200),
+orgFileName varchar2(200),
+viewCount number,
 fileSize number,
 lat number,
 lng number

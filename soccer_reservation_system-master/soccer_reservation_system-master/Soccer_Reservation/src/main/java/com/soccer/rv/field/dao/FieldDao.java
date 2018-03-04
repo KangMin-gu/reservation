@@ -6,4 +6,5 @@ import com.soccer.rv.field.dto.FieldDto;
 
 public interface FieldDao {
 	public List<FieldDto> getList();
+	public void increasereser(int countNum);
 }

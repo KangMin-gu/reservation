@@ -13,6 +13,7 @@ public class FieldDto {
 	private String saveFileName;
 	private long fileSize;
 	private MultipartFile file; //Spring 에서 파일 업로드 처리하기 위해
+	private int viewCount;
 	private int startRowNum;
 	private int endRowNum;
 	private float lat;
@@ -22,7 +23,7 @@ public class FieldDto {
 
 	public FieldDto(int num, String field_name, String field_addr, String field_morning, String field_afternoon,
 			String field_night, String orgFileName, String saveFileName, long fileSize, MultipartFile file,
-			int startRowNum, int endRowNum, float lat, float lng) {
+			int viewCount, int startRowNum, int endRowNum, float lat, float lng) {
 		super();
 		this.num = num;
 		this.field_name = field_name;
@@ -34,6 +35,7 @@ public class FieldDto {
 		this.saveFileName = saveFileName;
 		this.fileSize = fileSize;
 		this.file = file;
+		this.viewCount = viewCount;
 		this.startRowNum = startRowNum;
 		this.endRowNum = endRowNum;
 		this.lat = lat;
@@ -120,6 +122,14 @@ public class FieldDto {
 		this.file = file;
 	}
 
+	public int getViewCount() {
+		return viewCount;
+	}
+
+	public void setViewCount(int viewCount) {
+		this.viewCount = viewCount;
+	}
+
 	public int getStartRowNum() {
 		return startRowNum;
 	}
@@ -151,9 +161,6 @@ public class FieldDto {
 	public void setLng(float lng) {
 		this.lng = lng;
 	}
-
-
-	
 
 	
 }

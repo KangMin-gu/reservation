@@ -108,11 +108,17 @@ public class ReservationServiceImpl implements ReservationService{
 
 	//예약하기
 	@Override
-	public ModelAndView rvinsert(int num, RvinsertFormDto dtoa) {
+	public ModelAndView rvinsert(HttpServletRequest request, int num, RvinsertFormDto dtoa) {
 		ModelAndView mView = new ModelAndView();
 		FieldDto dto = rvdao.getData(num); 
 		System.out.println("a"+dto.getNum());
 		
+		//예약 할시 카운터1을 올린다. (나중에 어느운동장이 많이 예약되었는지 공지게시판으로 보내기위해..)
+		int countNum=Integer.parseInt(request.getParameter("num"));
+		System.out.println("asdfasdf"+countNum);
+		fielddao.increasereser(countNum);
+		
+		System.out.println();
 		String morning = dto.getField_morning();
 		String afternoon = dto.getField_afternoon();
 		

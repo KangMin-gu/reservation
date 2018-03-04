@@ -71,6 +71,5 @@
 		</set>
 		where field_name=#{field_name} and field_date=#{field_date}
 	</update>
-
 	
 </mapper>

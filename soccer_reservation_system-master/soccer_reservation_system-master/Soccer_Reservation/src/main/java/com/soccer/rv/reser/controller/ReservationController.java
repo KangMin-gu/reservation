@@ -71,8 +71,8 @@ public class ReservationController {
 	
 	//예약하기 및 결과페이지로이동
 	@RequestMapping("/reser/rvinsert")
-	public ModelAndView authrvinsert(@RequestParam int num ,@ModelAttribute RvinsertFormDto dtoa){
-		ModelAndView mView = rvservice.rvinsert(num, dtoa);
+	public ModelAndView authrvinsert(HttpServletRequest request ,@RequestParam int num ,@ModelAttribute RvinsertFormDto dtoa){
+		ModelAndView mView = rvservice.rvinsert(request, num, dtoa);
 		mView.setViewName("/reser/rvinsert_result");
 		return mView;
 	}
