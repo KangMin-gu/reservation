@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.soccer.rv.admin.dao.AdminDao;
+import com.soccer.rv.field.dao.FieldDao;
 import com.soccer.rv.field.dto.FieldDto;
 import com.soccer.rv.reser.orderdto.ReservationOrderDto;
 import com.soccer.rv.users.dto.UsersDto;
@@ -23,7 +24,9 @@ public class AdminServiceIpml implements AdminService{
 	
 	@Autowired
 	private AdminDao adminDao;
-
+	
+	@Autowired
+	private FieldDao fielddao;
 	
 
 	@Override
@@ -68,12 +71,6 @@ public class AdminServiceIpml implements AdminService{
 		
 		
 	}
-
-
-
-	
-	
-	/*============================================*/
 	
 	//회원 예약정보 확인 및 기간 초과시취소불가 기능
 	@Override
@@ -178,6 +175,18 @@ public class AdminServiceIpml implements AdminService{
 		mView.addObject("field_a_id", field_a_id );
 		mView.addObject("field_n_id", field_n_id);
 	
+		return mView;
+	}
+
+
+
+	@Override
+	public ModelAndView mainorder() {
+		
+		List<FieldDto> list = fielddao.toplist();
+		ModelAndView mView = new ModelAndView();
+		mView.addObject("list", list);
+		
 		return mView;
 	}
 	

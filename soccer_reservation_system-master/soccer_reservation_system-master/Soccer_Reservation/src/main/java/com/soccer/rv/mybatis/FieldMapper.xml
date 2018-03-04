@@ -13,4 +13,8 @@
 	WHERE num=#{countNum}
 </update>
 
+<select id="top" resultType="fieldDto">
+select * from (select * from field order by viewcount desc) where rownum <![CDATA[<=]]> 3
+</select>
+
 </mapper>

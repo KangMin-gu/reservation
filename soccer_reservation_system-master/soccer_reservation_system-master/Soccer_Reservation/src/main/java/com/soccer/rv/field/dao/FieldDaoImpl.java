@@ -26,4 +26,10 @@ public class FieldDaoImpl implements FieldDao{
 			session.update("field.addCount" , countNum);
 	}
 
+	@Override
+	public List<FieldDto> toplist() {
+		List<FieldDto> list = session.selectList("field.top");
+		return list;
+	}
+
 }

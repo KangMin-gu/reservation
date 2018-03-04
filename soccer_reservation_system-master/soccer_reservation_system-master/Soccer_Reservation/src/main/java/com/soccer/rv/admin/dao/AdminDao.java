@@ -14,9 +14,6 @@ public interface AdminDao {
 	public void update(UsersDto dto);
 	public void delete(String id);
 	public List<UsersDto> getList();
-	
-	/*=========================*/
-	//reservation 예약정보
 	public List<ReservationOrderDto> rvList(String userid);
 	public void rvDelete(ReservationOrderDto dto);
 	public FieldDto getData2(String field_name);

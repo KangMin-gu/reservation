@@ -65,56 +65,35 @@
          <span>Many</span> Reservation places
       </div>
    </div>
-
-   <section class="blog">
-      <div class="item col-md-4">
-         <div class="blok-read-sm">
-            <a href="review/detail.do" class="hover-image"> <img src="${pageContext.request.contextPath}/resources/img/sea1.jpg" alt="image">
-            <span class="layer-block"></span>
-            </a>
-            <div class="editor-choice">
-               <i class="fa fa-star"></i> <a href="#">Editor’s Choice</a>
-            </div>
-            <div class="content-block">
-               <span class="point-caption bg-blue-point"></span> <span
-                  class="bottom-line bg-blue-point"></span>
-               <div class="button-main bg-fio-point">read more</div>
-            </div>
-         </div>
-      </div>
-      
-      <div class="item col-md-4">
-         <div class="blok-read-sm">
-            <a href="single1.html" class="hover-image"> <img src="${pageContext.request.contextPath}/resources/img/sea2.jpg" alt="image"> 
-            <span class="layer-block"></span>
-            </a>
-            <div class="editor-choice">
-               <i class="fa fa-star"></i> <a href="#">Editor’s Choice</a>
-            </div>                           
-            <div class="content-block">
-               <span class="point-caption bg-blue-point"></span> <span
-                  class="bottom-line bg-blue-point"></span>
-               <div class="button-main bg-fio-point">read more</div>
-            </div>
-         </div>
-      </div>
-
-      <div class="item col-md-4">
-         <div class="blok-read-sm">
-            <a href="#" class="hover-image"> <img style="max-width:100%;" src="${pageContext.request.contextPath}/resources/img/sea3.jpg" alt="image"> 
-            <span class="layer-block"></span>
-            </a>            
-            <div class="editor-choice">
-               <i class="fa fa-star"></i> <a href="#">Editor’s Choice</a>
-            </div>                 
-            <div class="content-block">
-               <span class="point-caption bg-blue-point"></span> <span
-                  class="bottom-line bg-blue-point"></span>
-               <div class="button-main bg-fio-point">read more</div>
-            </div>
-         </div>
-      </div>
-   </section>
+   
+<section class="blog">
+<div class="container" style="margin-bottom: 50px;">
+	<div class="row">
+		<c:forEach items="${list }" var="tmp">		
+		      <div class="item col-md-4">
+		         <div class="blok-read-sm text-center">
+			            <a href="${pageContext.request.contextPath}/reser/rv_detail.do?num=${tmp.num}" class="hover-image"> <img style="max-width:100%;" src="${pageContext.request.contextPath}//upload/${tmp.saveFileName }" alt="image">			            
+			            <span class="layer-block text-center"> 
+			            	<strong style="font-size: 20px; color: white;">${tmp.field_name }</strong>
+			            </span>		
+			            </a>
+			           	<div class="editor-choice">
+			               <i class="fa fa-star"></i> <a href="#">${tmp.field_name }</a>
+			            </div>
+			        
+			            <strong>${tmp.field_name }</strong><br/>
+		          	 	<strong>${tmp.field_addr }</strong>
+		          
+		            <div class="content-block text-center" style="height:10px;">
+		      			<a class="btn btn-primary" href="${pageContext.request.contextPath}/reser/rv_detail.do?num=${tmp.num}">예약하러가기</a>
+		            </div>
+		         </div>
+		      </div> 
+		      
+		</c:forEach>  
+	</div>
+</div>   
+</section>
 
  <%@ include file="include/footer.jsp" %>
  
