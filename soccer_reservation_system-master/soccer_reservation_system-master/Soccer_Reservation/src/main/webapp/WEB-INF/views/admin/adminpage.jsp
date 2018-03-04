@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Humanity</title>
+<title>Soccer_Reservation</title>
  <%@ include file="../include/header_script.jsp" %>
 </head>
 <body>

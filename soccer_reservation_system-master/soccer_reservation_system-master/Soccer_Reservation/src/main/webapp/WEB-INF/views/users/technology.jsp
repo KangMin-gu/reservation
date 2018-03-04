@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Soccer_Reservation</title>
  <%@ include file="../include/header_script.jsp" %>
 </head>
 <body>
@@ -92,7 +92,7 @@
 							<table class="table text-center">
 								<thead>
 									<tr>
-										<th style="text-align: center;"> 그 외 주요 라이브러리</th>
+										<th style="text-align: center;"> 그 외 주요 라이브러리 및 API</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -103,7 +103,7 @@
 										<td>javaX.mail 1.6.1</td>
 									</tr>
 									<tr>
-										<td>Jquery UI 1.12.1- DatePicker</td>
+										<td>Jquery UI 1.12.1-DatePicker</td>
 									</tr>
 									<tr>
 										<td>Geocoder 0.16 JAVA</td>						

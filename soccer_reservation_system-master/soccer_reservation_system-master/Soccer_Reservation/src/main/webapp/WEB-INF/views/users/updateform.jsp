@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>users/updateform.do</title>
+<title>Soccer_Reservation</title>
  <%@ include file="../include/header_script.jsp" %>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/us-updateform.css" />
 </head>

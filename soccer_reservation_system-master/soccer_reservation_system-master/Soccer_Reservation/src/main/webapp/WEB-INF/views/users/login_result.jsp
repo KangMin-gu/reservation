@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>users/login_result</title>
+<title>Soccer_Reservation</title>
 </head>
 <body>
 <script>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Soccer_Reservation</title>
  <%@ include file="../include/header_script.jsp" %>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/playlist.css" />

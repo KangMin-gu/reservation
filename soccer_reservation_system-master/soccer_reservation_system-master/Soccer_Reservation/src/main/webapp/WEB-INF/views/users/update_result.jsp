@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Soccer_Reservation</title>
 </head>
 <body>
 <h3>업데이트성공!</h3>

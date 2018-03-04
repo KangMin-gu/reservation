@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>users/signup_form.jsp</title>
+<title>Soccer_Reservation</title>
  <%@ include file="../include/header_script.jsp" %>
 <!-- 현재 페이지에 적용할 style.css 파일을 여기에서 로딩한다 -->	
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/pl-insertform.css" />

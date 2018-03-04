@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>admin/adminlist.jsp</title>
+<title>Soccer_Reservation</title>
  <%@ include file="../include/header_script.jsp" %>
 </head>
 <body>

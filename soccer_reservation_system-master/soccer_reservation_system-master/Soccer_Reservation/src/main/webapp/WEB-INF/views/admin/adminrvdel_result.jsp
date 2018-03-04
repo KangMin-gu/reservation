@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>admin/adminrvdel_result.jsp</title>
+<title>Soccer_Reservation</title>
 </head>
 <body>
 
