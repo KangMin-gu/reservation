@@ -17,14 +17,15 @@
 			<div class="footer-second col-xs-12 col-sm-4 col-md-4">
 				<div class="social-block text-center">
 					<div class="social-share">
-						<i class="fa fa-2x fa-facebook"></i> <i
-							class="fa fa-2x  fa-twitter"></i> <i
-							class="fa fa-2x  fa-google-plus"></i> <i
-							class="fa fa-2x  fa-instagram"></i>
+						<i class="fa fa-2x fa-facebook"></i> 
+						<i class="fa fa-2x  fa-twitter"></i> 
+						<i class="fa fa-2x  fa-google-plus"></i> 
+						<i class="fa fa-2x  fa-instagram"></i>
 					</div>
 				</div>
 				<p class="text-center footer-text1">010-7120-3655</p>
-				<p class="text-center footer-text">mincu1028@gmail.com</p>
+				<p class="text-center footer-text">mincu1028@gmail.com</p><br/>
+				<p class="text-center footer-text"><a class="btn btn-default" href="https://github.com/KangMin-gu/reservation">지금 git 에서 소스코드를 확인해보세요!</a></p>
 			</div>
 			<div class="footer-third col-xs-12 col-sm-4 col-md-4">
 				<div class="copyright">

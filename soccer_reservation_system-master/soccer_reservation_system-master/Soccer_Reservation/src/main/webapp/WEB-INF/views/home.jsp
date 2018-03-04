@@ -65,8 +65,12 @@
          <span>Many</span> Reservation places
       </div>
    </div>
+
    
 <section class="blog">
+		<p class="text-center sub-text"><em class="first-line"><strong>Best Field!!</strong></em><br/>가장 예약이 많은 축구장 3곳을 소개해드립니다!</p>
+
+		
 <div class="container" style="margin-bottom: 50px;">
 	<div class="row">
 		<c:forEach items="${list }" var="tmp">		
@@ -74,7 +78,7 @@
 		         <div class="blok-read-sm text-center">
 			            <a href="${pageContext.request.contextPath}/reser/rv_detail.do?num=${tmp.num}" class="hover-image"> <img style="max-width:100%;" src="${pageContext.request.contextPath}//upload/${tmp.saveFileName }" alt="image">			            
 			            <span class="layer-block text-center"> 
-			            	<strong style="font-size: 20px; color: white;">${tmp.field_name }</strong>
+			            	<strong style="font-size: 20px; color: white;"></strong>
 			            </span>		
 			            </a>
 			           	<div class="editor-choice">

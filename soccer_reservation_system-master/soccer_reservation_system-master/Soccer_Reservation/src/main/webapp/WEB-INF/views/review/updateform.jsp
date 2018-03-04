@@ -40,77 +40,14 @@
 <script src="${pageContext.request.contextPath }/SmartEditor/js/HuskyEZCreator.js"></script>
 </head>
 <body>
-<div class="header container">
-		<!-- 세션에 id의 유무에따라 보여지는 loginView -->
-		<c:choose>
-			<c:when test="${not empty id }">
-				<div>
-					<ul id="loginUl">
-						<li class="loginLi"><a
-							href="${pageContext.request.contextPath}/users/info.do">My
-								info</a></li>
-						<li class="loginLi"><a
-							href="${pageContext.request.contextPath}/users/logout.do">Logout</a></li>
-					</ul>
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div>
-					<ul id="loginUl">
-						<li class="loginLi"><a href="users/loginform.do">Login</a></li>
-						<li class="loginLi"><a href="users/signupform.do">SignUp</a></li>
-					</ul>
-				</div>
-			</c:otherwise>
-		</c:choose>
+ <%@ include file="../include/header.jsp" %>
 
-		<div
-			class="visible-xs visible-sm col-xs-12 col-sm-12 text-center sm-logo">
-			<a rel="home" href="home.do"> <img
-				src="${pageContext.request.contextPath}/resources/img/soccer.png"
-				width="200" alt="logo">
-			</a>
-		</div>
-	</div>
-	<div class="navbar" role="navigation">
-
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-		</div>
-		<div class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="selected"><a
-					href="${pageContext.request.contextPath}/home.do">Home</a></li>
-				<li><a href="myassist.do">Team</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/users/fieldlist.do">Near
-						Playground</a></li>
-				<li class="hidden-xs hidden-sm"><a rel="home"
-					href="${pageContext.request.contextPath}/home.do"><img
-						class="logo"
-						src="${pageContext.request.contextPath}/resources/img/soccer.png"
-						width="200" alt="logo"></a></li>
-				<li><a href="${pageContext.request.contextPath}/playlist/playlist.do">playground List</a></li>
-				<li><a href="${pageContext.request.contextPath}/review/list.do">Review</a></li>
-				<li><a href="contact.html">Question</a></li>
-			</ul>
-		</div>
-	</div>
-<!-- ============TOP============= -->
 <div class="container">
 	<div class="row">
 		<div class="divider col-sm-12 col-xs-12 col-md-12">
 			<div class="header-text">
-				<span>후기 글 수정</span>
+				Review<span>Update</span>
 				<div class="container header-start text-center"></div>
-				<p class="text-left sub-text">
-					<em class="first-line">후기 관련사항이 아닌 광고성 글 및 회원들에게 불쾌감을 주는 내용은 조심해 주세요.!</em>
-				</p>
 			</div>
 		</div>
 	</div>
@@ -146,6 +83,8 @@
 		</div>
 	</div>
 </div>
+	
+ <%@ include file="../include/footer.jsp" %>
 <script>
 var oEditors = [];
 
